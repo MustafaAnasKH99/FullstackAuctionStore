@@ -25,7 +25,7 @@ export default function AccountForm({ session }) {
 
       const { data, error, status } = await supabase
         .from('profiles')
-        .select(`full_name, username, website, avatar_url`)
+        .select(`full_name, username, website, avatar_url, first_name, last_name, street_address, province, country, postal_code, phone_number`)
         .eq('id', user?.id)
         .single()
 
@@ -38,6 +38,13 @@ export default function AccountForm({ session }) {
         setUsername(data.username)
         setWebsite(data.website)
         setAvatarUrl(data.avatar_url)
+        setfName(data.first_name)
+        setlName(data.last_name)
+        setStreet(data.street_address)
+        setNumber(data.province)
+        setProvince(data.country)
+        setCountry(data.postal_code)
+        setPostalCode(data.phone_number)
       }
     } catch (error) {
       alert('Error loading user data!')
