@@ -1,8 +1,9 @@
 'use client'
 import { useCallback, useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import ForwardAuction from './forward-auction'
 
-export default function MyAuctions({ session, data }) {
+export default function MyAuctions({ session, data, forward_auction }) {
     
     const supabase = createClientComponentClient()
     const [fullname, setFullname] = useState('')
@@ -51,10 +52,11 @@ export default function MyAuctions({ session, data }) {
         return (
             <div>LOADING ...</div>
         )
-    } else if (data){
+    } else if (data && forward_auction){
         return (
             <div>
             <h1>{username}'s current active auctions</h1>
+            <h1>DUTCH AUCTIONS</h1>
             <div>
             {data.map((el, index) => {
                 return (
@@ -102,6 +104,10 @@ export default function MyAuctions({ session, data }) {
                     </table>
                 )
             })}    
+            </div>
+            <h1>FORWARD AUCTIONS</h1>
+            <div>
+                <ForwardAuction data={forward_auction} />
             </div>
             {/* This table renders user data - traform into a seperate header component */}
            

@@ -11,6 +11,7 @@ export default async function Account() {
   } = await supabase.auth.getSession()
 
   const {data: auctions} = await supabase.from('dutch_auction').select("*")
+  const {data: forward_auction} = await supabase.from('forward_auction').select("*");
 
-  return <MyAuctions session={session} data={auctions} />
+  return <MyAuctions session={session} data={auctions} forward_auction={forward_auction} />
 }
