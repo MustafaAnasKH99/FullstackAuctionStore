@@ -71,6 +71,10 @@ export default function MyAuctions({ session, data, forward_auction }) {
                                 <td><div>{el.description}</div></td>
                             </tr>
                             <tr>
+                                <td>Published:</td>
+                                <td><div>{el.published.toString()}</div></td>
+                            </tr>
+                            <tr>
                                 <td>Starting Price:</td>
                                 <td><div>{el.initial_price}</div></td>
                             </tr>

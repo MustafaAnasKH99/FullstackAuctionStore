@@ -30,6 +30,10 @@ export default function ForwardAuction({ data }) {
                                 <td><div>{el.description}</div></td>
                             </tr>
                             <tr>
+                                <td>Published:</td>
+                                <td><div>{el.published.toString()}</div></td>
+                            </tr>
+                            <tr>
                                 <td>Starting Price:</td>
                                 <td><div>{el.base_price}</div></td>
                             </tr>
