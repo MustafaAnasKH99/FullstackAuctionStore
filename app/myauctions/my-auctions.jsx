@@ -104,26 +104,7 @@ export default function MyAuctions({ session, data }) {
             })}    
             </div>
             {/* This table renders user data - traform into a seperate header component */}
-            <table>
-                <tbody>
-                    <tr>
-                        <td>Full Name:</td>
-                        <td><div>{fullname}</div></td>
-                    </tr>
-                    <tr>
-                        <td>Username:</td>
-                        <td><div>{username}</div></td>
-                    </tr>
-                    <tr>
-                        <td>Website:</td>
-                        <td><div>{website}</div></td>
-                    </tr>
-                    <tr>
-                        <td>Avatar URL:</td>
-                        <td><div>{avatarUrl}</div></td>
-                    </tr>
-                </tbody>
-            </table>
+           
         </div>
         )
         
