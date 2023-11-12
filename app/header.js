@@ -61,13 +61,25 @@ export default function Header({ session }) {
           <ul className="flex gap-x-6">
             {/* Navigation links */}
             <li>
+              <Link href="/home" className="hover:text-gray-300">
+                Home
+              </Link>
+            </li>
+            <li>
               <Link href="/account" className="hover:text-gray-300">
                 Account     
               </Link>
-              <Link href="/myauctions" className="hover:text-gray-300">
-                My Auctions
-              </Link>
-            </li>
+              </li>
+              <li>
+                <Link href="/myauctions" className="hover:text-gray-300">
+                  My Auctions
+                </Link>
+              </li>
+              <li>
+                <Link href="/create" className="hover:text-gray-300">
+                  Create an Auction
+                </Link>
+              </li>
           </ul>
         </nav>
         {/* Social media icons */}
