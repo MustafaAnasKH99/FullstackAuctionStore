@@ -15,37 +15,9 @@ export default function MyAuctions({ session, data, forward_auction }) {
     const [auctions, setAuctions] = useState([])
     const [loading, setLoading] = useState(false)
     const user = session?.user
-    
-    // this function gets user data
-    const getProfile = useCallback(async () => {
-        try {
-            setLoading(true)
-
-            const { data, error, status } = await supabase
-                .from('profiles')
-                .select(`full_name, username, website, avatar_url`)
-                .eq('id', user?.id)
-                .single()
-
-            if (error && status !== 406) {
-                throw error
-            }
-
-            if (data) {
-                setFullname(data.full_name)
-                setUsername(data.username)
-                setWebsite(data.website)
-                setAvatarUrl(data.avatar_url)
-            }
-        } catch (error) {
-            alert('Error loading user data!')
-        } finally {
-            setLoading(false)
-        }
-    }, [user, supabase])
 
     useEffect(() => {
-        getProfile()
+        
     }, [])
 
     if(loading){
@@ -55,7 +27,6 @@ export default function MyAuctions({ session, data, forward_auction }) {
     } else if (data && forward_auction){
         return (
             <div>
-            <h1>{username}'s current active auctions</h1>
             <h1>DUTCH AUCTIONS</h1>
             <div>
             {data.map((el, index) => {
