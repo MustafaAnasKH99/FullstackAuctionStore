@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import ForwardAuction from './forward-auction'
+import Link from 'next/link'
 
 export default function MyAuctions({ session, data, forward_auction }) {
     
@@ -33,6 +34,11 @@ export default function MyAuctions({ session, data, forward_auction }) {
                 return (
                     <table key={index}>
                         <tbody>
+                            <div>
+                                <Link href="/payment">
+                                        <button>Go to Payment</button>
+                                </Link>
+                            </div>
                             <tr>
                                 <td>Title:</td>
                                 <td><div>{el.title}</div></td>
