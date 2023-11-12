@@ -1,6 +1,5 @@
 'use client'
 import { useEffect } from "react";
-import MyAuctions from "../myauctions/my-auctions";
 
 export default function CreateAuction() {
 
