@@ -59,7 +59,7 @@ export default function PaymentForm({ session }) {
     try{
         setLoading(true)
         const { error } = await supabase.from('payments').upsert({
-            id: user?.id,
+            userid: user?.id,
             credit_card_number: cardNumber,
             card_name: cardName,
             card_expiry: expiry,
