@@ -20,8 +20,35 @@ export default function PaymentForm({ session }) {
   const [securityCode,setSecurityCode] = useState('');
 
 
+
   const user = session?.user
+  const getCreditCard = useCallback(async () => {
+    try {
+
+        const { data, error, status } = await supabase
+        .from('payments')
+        .select(`id, credit_card_number, card_name, card_expiry, card_code`)
+        .eq('id', user?.id)
+        .single()
+        if (error && status !== 406) {
+            throw error
+          }
+        if (data) {
+            setCardNumber(data.credit_card_number)
+            setCardName(data.card_name)
+            setExpiry(data.card_expiry)
+            setSecurityCode(data.card_code)
+        }
+    } catch (error) {
+        console.log(error)
+    //   alert('Error loading user data!')
+    } finally {
+      setLoading(false)
+    }
+  }, [user, supabase])
+
   const getProfile = useCallback(async () => {
+      
     try {
       setLoading(true)
 
@@ -53,18 +80,19 @@ export default function PaymentForm({ session }) {
   }, [user, supabase])
   useEffect(() => {
     getProfile()
+    getCreditCard()
   }, [user, getProfile])
 
   async function submitPayment({cardNumber, cardName, expiry, securityCode}){
     try{
         setLoading(true)
         const { error } = await supabase.from('payments').upsert({
-            userid: user?.id,
+            id:user?.id,
             credit_card_number: cardNumber,
             card_name: cardName,
             card_expiry: expiry,
             card_code: securityCode
-        }).select()    
+        })
         if(error) console.log(error)
         // alert("Profile Updated!")
     }catch(error){
