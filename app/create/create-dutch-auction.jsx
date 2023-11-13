@@ -126,18 +126,7 @@ export default function CreateDutchAuction({ session }) {
                     value={reservePrice}
                     onChange={(e) => setReservePrice(e.target.value)}
                     />
-                </div>
-                <div>
-                
-                <input
-                    type="datetime-local"
-                    id="meeting-time"
-                    name="meeting-time"
-                    value="2023-11-12T12:00"
-                    onChange={(e) => handleTime(e.target.value)}
-                />
-                </div>
-                
+                </div>                
                 <div>
                     <button onClick={() => createAuction({title, description, images, isPublished, price, decrementAmount, reservePrice})}>Create Auction</button>
                 </div>
