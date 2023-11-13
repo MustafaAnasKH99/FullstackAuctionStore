@@ -50,46 +50,51 @@ export default function Header({ session }) {
     getProfile();
   }, []);
 
-  return (
-    <header className="bg-gray-900 text-white py-4 sticky top-0 z-50">
-      {/* Header container */}
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        {/* Website title */}
-        <h1 className="text-xl font-semibold">Auctions App</h1>
-        {/* Navigation menu */}
-        <nav className="hidden md:block">
-          <ul className="flex gap-x-6">
-            {/* Navigation links */}
-            <li>
-              <Link href="/home" className="hover:text-gray-300">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link href="/account" className="hover:text-gray-300">
-                Account     
-              </Link>
-              </li>
+  if (!session) {
+    return null;
+  }
+  else {
+    return (
+      <header className="bg-gray-900 text-white py-4 sticky top-0 z-50">
+        {/* Header container */}
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          {/* Website title */}
+          <h1 className="text-xl font-semibold">Auctions App</h1>
+          {/* Navigation menu */}
+          <nav className="hidden md:block">
+            <ul className="flex gap-x-6">
+              {/* Navigation links */}
               <li>
-                <Link href="/myauctions" className="hover:text-gray-300">
-                  My Auctions
+                <Link href="/home" className="hover:text-gray-300">
+                  Home
                 </Link>
               </li>
               <li>
-                <Link href="/create" className="hover:text-gray-300">
-                  Create an Auction
+                <Link href="/account" className="hover:text-gray-300">
+                  Account     
                 </Link>
-              </li>
-          </ul>
-        </nav>
-        {/* Social media icons */}
-        <div className="hidden md:block">
-          <SocialIcons fullname={fullname} username={username} />
+                </li>
+                <li>
+                  <Link href="/myauctions" className="hover:text-gray-300">
+                    My Auctions
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/create" className="hover:text-gray-300">
+                    Create an Auction
+                  </Link>
+                </li>
+            </ul>
+          </nav>
+          {/* Social media icons */}
+          <div className="hidden md:block">
+            <SocialIcons fullname={fullname} username={username} />
+          </div>
+          {/* Add Mobile Navigation Toggle Here */}
         </div>
-        {/* Add Mobile Navigation Toggle Here */}
-      </div>
-    </header>
-  );
+      </header>
+    );
+  }
 }
 
 // Define the SocialIcons component
