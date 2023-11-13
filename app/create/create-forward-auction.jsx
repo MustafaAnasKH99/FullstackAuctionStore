@@ -30,7 +30,7 @@ export default function CreateForwardAuction({ session }) {
           if (error) {
             throw error
           } else {
-            alert("Auction created sussessfully!")
+            alert("Forward Auction created sussessfully!")
             window.location.reload(false);
           }
         } catch (error) {
@@ -38,7 +38,7 @@ export default function CreateForwardAuction({ session }) {
           throw error
         } finally {
           setLoading(false)
-          alert('Auction Created!')
+          alert('Forward Auction Created!')
         }
     }
 
