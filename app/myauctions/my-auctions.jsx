@@ -1,24 +1,43 @@
 'use client'
 import { useCallback, useEffect, useState } from 'react'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import ForwardAuction from './forward-auction'
 import Link from 'next/link'
 
 export default function MyAuctions({ session, data, forward_auction }) {
-    
-    const supabase = createClientComponentClient()
-    const [fullname, setFullname] = useState('')
-    const [username, setUsername] = useState('')
-    const [website, setWebsite] = useState('')
-    const [avatarUrl, setAvatarUrl] = useState('')
-    const [title, setTitle] = useState('')
-    const [datas, setData] = useState([])
-    const [auctions, setAuctions] = useState([])
     const [loading, setLoading] = useState(false)
-    const user = session?.user
+    const [forward, setForward] = useState([])
+    const [dutch, setDutch] = useState([])
+
+    const handleSearch = (filter) => {
+        let filteredForwardAuctions = forward_auction.filter((auction) => {
+            if(auction.description){
+                return auction.title.includes(filter) || auction.description.includes(filter)
+            } else {
+                return auction.title.includes(filter)
+            }
+        })
+        
+        let filteredDutchAuctions = data.filter((auction) => {
+            if(auction.description){
+                return auction.title.includes(filter) || auction.description.includes(filter)
+            } else {
+                return auction.title.includes(filter)
+            }
+        })
+        
+        setForward(filteredForwardAuctions)
+        setDutch(filteredDutchAuctions)
+    }
 
     useEffect(() => {
-        
+        if(data){
+            console.log('is this running??')
+            setDutch(data)
+        }
+
+        if(forward_auction){
+            setForward(forward_auction)
+        }
     }, [])
 
     if(loading){
@@ -28,9 +47,18 @@ export default function MyAuctions({ session, data, forward_auction }) {
     } else if (data && forward_auction){
         return (
             <div>
+                <div>
+                    <label htmlFor="title">Search</label>
+                    <input
+                    id="search"
+                    type="text"
+                    placeholder="Search Auctions by title or description .."
+                    onChange={(e) => handleSearch(e.target.value)}
+                    />
+                </div>
             <h1>DUTCH AUCTIONS</h1>
             <div>
-            {data.map((el, index) => {
+            {dutch.map((el, index) => {
                 return (
                     <table key={index}>
                         <tbody>
@@ -88,7 +116,7 @@ export default function MyAuctions({ session, data, forward_auction }) {
             </div>
             <h1>FORWARD AUCTIONS</h1>
             <div>
-                <ForwardAuction data={forward_auction} />
+                <ForwardAuction data={forward} />
             </div>
             {/* This table renders user data - traform into a seperate header component */}
            
