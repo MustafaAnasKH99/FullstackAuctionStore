@@ -1,0 +1,782 @@
+{
+	"info": {
+		"_postman_id": "e597ed4e-b64a-4766-82ce-cf8467bf1f50",
+		"name": "Auction System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7167188"
+	},
+	"item": [
+		{
+			"name": "Get Account Info",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-CA,en-US;q=0.7,en;q=0.3"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:3000/"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ybGFreHZxZHdoanltZ2tycGV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk4MjEyMDgsImV4cCI6MjAxNTM5NzIwOH0.OX_o-PIlG_k9J2Z3YExx-QRYN4-9qL-j9xwFeDT0-9k"
+					},
+					{
+						"key": "apikey",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ybGFreHZxZHdoanltZ2tycGV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk4MjEyMDgsImV4cCI6MjAxNTM5NzIwOH0.OX_o-PIlG_k9J2Z3YExx-QRYN4-9qL-j9xwFeDT0-9k"
+					},
+					{
+						"key": "X-Client-Info",
+						"value": "^@supabase/auth-helpers-nextjs^@0.8.7"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:3000"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "cross-site"
+					},
+					{
+						"key": "TE",
+						"value": "trailers"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{email:dileh37436@othao.com,password:testerpassword,gotrue_meta_security:{}}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/account",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login - Run First",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-CA,en-US;q=0.7,en;q=0.3"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:3000/"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ybGFreHZxZHdoanltZ2tycGV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk4MjEyMDgsImV4cCI6MjAxNTM5NzIwOH0.OX_o-PIlG_k9J2Z3YExx-QRYN4-9qL-j9xwFeDT0-9k"
+					},
+					{
+						"key": "apikey",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ybGFreHZxZHdoanltZ2tycGV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk4MjEyMDgsImV4cCI6MjAxNTM5NzIwOH0.OX_o-PIlG_k9J2Z3YExx-QRYN4-9qL-j9xwFeDT0-9k"
+					},
+					{
+						"key": "X-Client-Info",
+						"value": "^@supabase/auth-helpers-nextjs^@0.8.7"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:3000"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "cross-site"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{email:dileh37436@othao.com,password:testerpassword,gotrue_meta_security:{}}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user auctions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/myauctions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"myauctions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Published Auctions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/home",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"home"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a forward auction by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/home/forward/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"home",
+						"forward",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a Dutch auction by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/home/dutch/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"home",
+						"dutch",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create an Auction",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/create/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View and Update Payment",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/payment/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"payment",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Signout from current session",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/a/uth/signout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"a",
+						"uth",
+						"signout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new Dutch Auction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-CA,en-US;q=0.7,en;q=0.3"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:3000/"
+					},
+					{
+						"key": "apikey",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ybGFreHZxZHdoanltZ2tycGV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk4MjEyMDgsImV4cCI6MjAxNTM5NzIwOH0.OX_o-PIlG_k9J2Z3YExx-QRYN4-9qL-j9xwFeDT0-9k"
+					},
+					{
+						"key": "authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IktBd1FKcnhFOEN4NUR6aW8iLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjk5OTM5ODkyLCJpYXQiOjE2OTk5MzYyOTIsImlzcyI6Imh0dHBzOi8vbXJsYWt4dnFkd2hqeW1na3JwZXUuc3VwYWJhc2UuY28vYXV0aC92MSIsInN1YiI6IjUzYzFmOTFiLTk4NjctNDExMi05MjU4LTYxYjE4NzU5ZTViZCIsImVtYWlsIjoiZGlsZWgzNzQzNkBvdGhhby5jb20iLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl19LCJ1c2VyX21ldGFkYXRhIjp7fSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJhYWwiOiJhYWwxIiwiYW1yIjpbeyJtZXRob2QiOiJwYXNzd29yZCIsInRpbWVzdGFtcCI6MTY5OTkzNjI5Mn1dLCJzZXNzaW9uX2lkIjoiODEwOTI2YjktN2M3NC00OTJjLTgyZGYtNThmMDdlNGNiNDM3In0.kE6-xah6_LrAdF3iYkwiUrXUQ1KI4c_g4O-uwNxRFBg"
+					},
+					{
+						"key": "content-profile",
+						"value": "public"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "prefer",
+						"value": "resolution=merge-duplicates"
+					},
+					{
+						"key": "x-client-info",
+						"value": "^@supabase/auth-helpers-nextjs^@0.8.7"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:3000"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "cross-site"
+					},
+					{
+						"key": "TE",
+						"value": "trailers"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{created_by:53c1f91b-9867-4112-9258-61b18759e5bd,title:testing dutch,description:test,pictures:[https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg,https://static.dezeen.com/uploads/2022/08/everden-house-studio-ac-toronto_dezeen_2364_col_14-scaled.jpg^],published:false,initial_price:1000,decrement_amount:1,reserve_price:100}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new Forward Auction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-CA,en-US;q=0.7,en;q=0.3"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:3000/"
+					},
+					{
+						"key": "apikey",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ybGFreHZxZHdoanltZ2tycGV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk4MjEyMDgsImV4cCI6MjAxNTM5NzIwOH0.OX_o-PIlG_k9J2Z3YExx-QRYN4-9qL-j9xwFeDT0-9k"
+					},
+					{
+						"key": "authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IktBd1FKcnhFOEN4NUR6aW8iLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjk5OTM5ODkyLCJpYXQiOjE2OTk5MzYyOTIsImlzcyI6Imh0dHBzOi8vbXJsYWt4dnFkd2hqeW1na3JwZXUuc3VwYWJhc2UuY28vYXV0aC92MSIsInN1YiI6IjUzYzFmOTFiLTk4NjctNDExMi05MjU4LTYxYjE4NzU5ZTViZCIsImVtYWlsIjoiZGlsZWgzNzQzNkBvdGhhby5jb20iLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl19LCJ1c2VyX21ldGFkYXRhIjp7fSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJhYWwiOiJhYWwxIiwiYW1yIjpbeyJtZXRob2QiOiJwYXNzd29yZCIsInRpbWVzdGFtcCI6MTY5OTkzNjI5Mn1dLCJzZXNzaW9uX2lkIjoiODEwOTI2YjktN2M3NC00OTJjLTgyZGYtNThmMDdlNGNiNDM3In0.kE6-xah6_LrAdF3iYkwiUrXUQ1KI4c_g4O-uwNxRFBg"
+					},
+					{
+						"key": "content-profile",
+						"value": "public"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "prefer",
+						"value": "resolution=merge-duplicates"
+					},
+					{
+						"key": "x-client-info",
+						"value": "^@supabase/auth-helpers-nextjs^@0.8.7"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:3000"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "cross-site"
+					},
+					{
+						"key": "TE",
+						"value": "trailers"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{created_by:53c1f91b-9867-4112-9258-61b18759e5bd,title:Testing Published Forward auction,description:test search by typing search ,pictures:[https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg,https://static.dezeen.com/uploads/2022/08/everden-house-studio-ac-toronto_dezeen_2364_col_14-scaled.jpg^],published:true,base_price:1000,ends_at:2023-11-22T17:00:00.000Z}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accept a Listed Dutch Auction",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-CA,en-US;q=0.7,en;q=0.3"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:3000/"
+					},
+					{
+						"key": "apikey",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ybGFreHZxZHdoanltZ2tycGV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk4MjEyMDgsImV4cCI6MjAxNTM5NzIwOH0.OX_o-PIlG_k9J2Z3YExx-QRYN4-9qL-j9xwFeDT0-9k"
+					},
+					{
+						"key": "authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IktBd1FKcnhFOEN4NUR6aW8iLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjk5OTM5ODkyLCJpYXQiOjE2OTk5MzYyOTIsImlzcyI6Imh0dHBzOi8vbXJsYWt4dnFkd2hqeW1na3JwZXUuc3VwYWJhc2UuY28vYXV0aC92MSIsInN1YiI6IjUzYzFmOTFiLTk4NjctNDExMi05MjU4LTYxYjE4NzU5ZTViZCIsImVtYWlsIjoiZGlsZWgzNzQzNkBvdGhhby5jb20iLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl19LCJ1c2VyX21ldGFkYXRhIjp7fSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJhYWwiOiJhYWwxIiwiYW1yIjpbeyJtZXRob2QiOiJwYXNzd29yZCIsInRpbWVzdGFtcCI6MTY5OTkzNjI5Mn1dLCJzZXNzaW9uX2lkIjoiODEwOTI2YjktN2M3NC00OTJjLTgyZGYtNThmMDdlNGNiNDM3In0.kE6-xah6_LrAdF3iYkwiUrXUQ1KI4c_g4O-uwNxRFBg"
+					},
+					{
+						"key": "content-profile",
+						"value": "public"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "prefer",
+						"value": "return=representation"
+					},
+					{
+						"key": "x-client-info",
+						"value": "^@supabase/auth-helpers-nextjs^@0.8.7"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:3000"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "cross-site"
+					},
+					{
+						"key": "TE",
+						"value": "trailers"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{accepted_bidder:53c1f91b-9867-4112-9258-61b18759e5bd}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/home/dutch/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"home",
+						"dutch",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bid on a listed forward auction",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-CA,en-US;q=0.7,en;q=0.3"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:3000/"
+					},
+					{
+						"key": "apikey",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ybGFreHZxZHdoanltZ2tycGV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk4MjEyMDgsImV4cCI6MjAxNTM5NzIwOH0.OX_o-PIlG_k9J2Z3YExx-QRYN4-9qL-j9xwFeDT0-9k"
+					},
+					{
+						"key": "authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IktBd1FKcnhFOEN4NUR6aW8iLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjk5OTM5ODkyLCJpYXQiOjE2OTk5MzYyOTIsImlzcyI6Imh0dHBzOi8vbXJsYWt4dnFkd2hqeW1na3JwZXUuc3VwYWJhc2UuY28vYXV0aC92MSIsInN1YiI6IjUzYzFmOTFiLTk4NjctNDExMi05MjU4LTYxYjE4NzU5ZTViZCIsImVtYWlsIjoiZGlsZWgzNzQzNkBvdGhhby5jb20iLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl19LCJ1c2VyX21ldGFkYXRhIjp7fSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJhYWwiOiJhYWwxIiwiYW1yIjpbeyJtZXRob2QiOiJwYXNzd29yZCIsInRpbWVzdGFtcCI6MTY5OTkzNjI5Mn1dLCJzZXNzaW9uX2lkIjoiODEwOTI2YjktN2M3NC00OTJjLTgyZGYtNThmMDdlNGNiNDM3In0.kE6-xah6_LrAdF3iYkwiUrXUQ1KI4c_g4O-uwNxRFBg"
+					},
+					{
+						"key": "content-profile",
+						"value": "public"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "prefer",
+						"value": "return=representation"
+					},
+					{
+						"key": "x-client-info",
+						"value": "^@supabase/auth-helpers-nextjs^@0.8.7"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:3000"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "cross-site"
+					},
+					{
+						"key": "TE",
+						"value": "trailers"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{bidder:53c1f91b-9867-4112-9258-61b18759e5bd,highest_price:15000}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/home/forward/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"home",
+						"forward",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Payment Info",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-CA,en-US;q=0.7,en;q=0.3"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:3000/"
+					},
+					{
+						"key": "apikey",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ybGFreHZxZHdoanltZ2tycGV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk4MjEyMDgsImV4cCI6MjAxNTM5NzIwOH0.OX_o-PIlG_k9J2Z3YExx-QRYN4-9qL-j9xwFeDT0-9k"
+					},
+					{
+						"key": "authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IktBd1FKcnhFOEN4NUR6aW8iLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjk5OTM5ODkyLCJpYXQiOjE2OTk5MzYyOTIsImlzcyI6Imh0dHBzOi8vbXJsYWt4dnFkd2hqeW1na3JwZXUuc3VwYWJhc2UuY28vYXV0aC92MSIsInN1YiI6IjUzYzFmOTFiLTk4NjctNDExMi05MjU4LTYxYjE4NzU5ZTViZCIsImVtYWlsIjoiZGlsZWgzNzQzNkBvdGhhby5jb20iLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl19LCJ1c2VyX21ldGFkYXRhIjp7fSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJhYWwiOiJhYWwxIiwiYW1yIjpbeyJtZXRob2QiOiJwYXNzd29yZCIsInRpbWVzdGFtcCI6MTY5OTkzNjI5Mn1dLCJzZXNzaW9uX2lkIjoiODEwOTI2YjktN2M3NC00OTJjLTgyZGYtNThmMDdlNGNiNDM3In0.kE6-xah6_LrAdF3iYkwiUrXUQ1KI4c_g4O-uwNxRFBg"
+					},
+					{
+						"key": "content-profile",
+						"value": "public"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "prefer",
+						"value": "resolution=merge-duplicates"
+					},
+					{
+						"key": "x-client-info",
+						"value": "^@supabase/auth-helpers-nextjs^@0.8.7"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:3000"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "cross-site"
+					},
+					{
+						"key": "TE",
+						"value": "trailers"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{id:53c1f91b-9867-4112-9258-61b18759e5bd,credit_card_number:1111222233334444,card_name:Tester User,card_expiry:11/11,card_code:123}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/payment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"payment"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
