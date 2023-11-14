@@ -1,7 +1,8 @@
 ## E-Commerce Auction Website/System 
  
 This project aims to create a safe, modular, and easily accessible E-Commerce Auction Website/System. The system will support two different auction types: Forward Auction and Dutch Auction. 
- 
+
+[Find full report document here](https://docs.google.com/document/d/1746KABwrcjDPuOvBTba7e2II1Wb_wxzSZyoDqgtljTw/edit?usp=sharing)
 ### Forward Auction 
 In a Forward Auction, the seller sets an initial price, and bidders compete by offering higher prices. Bidders need to increase their maximum bid until the set time ends. The highest bidder at the end of the auction will acquire the listed item. 
  
@@ -25,6 +26,8 @@ Our project focuses on creating a highly compatible front-end and back-end syste
 6) Stripe:
     - Integrating a reliable and developer-friendly payment processing solution.
 
+### Installation and Setup
+
 > **_NOTE:_** to run this program, you need to have access to the database. After you follow the steps below and install the project, create a new `.env.loca` file in the root directory. Paste the below piece of code inside and fill the variable values by the info we send you. Paste the values directly. Do not put double or single quotes around.
 
 ```
@@ -32,7 +35,6 @@ NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 ```
 
-### Installation and Setup 
 To run the project locally, follow these steps: 
  
 1. Clone the repository:  `git clone`
