@@ -13,25 +13,25 @@ Our project focuses on creating a highly compatible front-end and back-end syste
  
 ### Technologies Used 
 1) Supabase:
-    Choosing a free, flexible and scalable database for handling large volumes of data.
+    - Choosing a free, flexible and scalable database for handling large volumes of data.
 2) Npm/Yarn:
-    Opting for a fast and secure package manager for efficient dependency management.
+    - Opting for a fast and secure package manager for efficient dependency management.
 3) NextJs (NextAuth):
-    Selecting a robust framework for building dynamic and server-rendered React applications with integrated authentication.
+    - Selecting a robust framework for building dynamic and server-rendered React applications with integrated authentication.
 4) React.js with Javascript:
-    Using a powerful and popular library for building interactive user interfaces.
+    - Using a powerful and popular library for building interactive user interfaces.
 5) Tailwind CSS:
-    Leveraging a utility-first CSS framework for rapid and customizable UI development.
+    - Leveraging a utility-first CSS framework for rapid and customizable UI development.
 6) Stripe:
-    Integrating a reliable and developer-friendly payment processing solution.
+    - Integrating a reliable and developer-friendly payment processing solution.
 
  
 ### Installation and Setup 
 To run the project locally, follow these steps: 
  
-1. Clone the repository:  git clone   
-2. Install dependencies:  npm install  
-3. Start the development server:  npm run dev  
+1. Clone the repository:  `git clone`
+2. Install dependencies:  `npm install`
+3. Start the development server:  `npm run dev `
 4. Access the website at  http://localhost:3000 
  
 ### Contributors 
