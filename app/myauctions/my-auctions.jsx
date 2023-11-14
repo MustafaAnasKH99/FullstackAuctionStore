@@ -116,7 +116,7 @@ export default function MyAuctions({ session, data, forward_auction }) {
             </div>
             <h1>FORWARD AUCTIONS</h1>
             <div>
-                <ForwardAuction data={forward} />
+                <ForwardAuction session={session} data={forward} />
             </div>
             {/* This table renders user data - traform into a seperate header component */}
            
