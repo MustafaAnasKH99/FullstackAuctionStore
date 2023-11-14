@@ -1,6 +1,7 @@
 'use client'
 import { useCallback, useEffect, useState } from 'react'
 import ForwardAuction from './forward-auction'
+import DutchBidInput from './dutch-bid-input'
 import Link from 'next/link'
 
 export default function MyAuctions({ session, data, forward_auction }) {
@@ -116,7 +117,7 @@ export default function MyAuctions({ session, data, forward_auction }) {
             </div>
             <h1>FORWARD AUCTIONS</h1>
             <div>
-                <ForwardAuction data={forward} />
+                <ForwardAuction session={session} data={forward} />
             </div>
             {/* This table renders user data - traform into a seperate header component */}
            
@@ -167,6 +168,10 @@ export default function MyAuctions({ session, data, forward_auction }) {
                             <tr>
                                 <td>Created at:</td>
                                 <td><div>{el.created_at}</div></td>
+                            </tr>
+                            <tr>
+                                <td>Status:</td>
+                                { el.accepted_bidder ? <td>Auction Already Accepted</td> : <DutchBidInput session={session} id={data[0].id} /> }
                             </tr>
                             <tr>
                                 <td>Images:</td>

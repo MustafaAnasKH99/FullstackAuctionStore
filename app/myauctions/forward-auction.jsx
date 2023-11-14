@@ -1,12 +1,15 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import ForwardBidInput from './forward-bid-input'
 
-export default function ForwardAuction({ data }) {
+export default function ForwardAuction({ session, data }) {
     const [loading, setLoading] = useState(false)
+    const [bid, setBid] = useState(false)
+    const [id, setId] = useState(false)
 
     useEffect(() => {
-
+        
     }, [])
 
     if(loading){
@@ -68,6 +71,10 @@ export default function ForwardAuction({ data }) {
                 )
             })}    
             </div>
+            <div>
+                <button onClick={(e) => setBid(!bid)}>Bid</button>
+            </div>
+            <div>{ bid ? <ForwardBidInput session={session} id={data[0].id} /> :<p></p>}</div>
         </div>
         )
         
