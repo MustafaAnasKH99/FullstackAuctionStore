@@ -123,6 +123,67 @@ export default function MyAuctions({ session, data, forward_auction }) {
         </div>
         )
         
+    } else if (data){
+        // This is to handle rendering the page of one dutch auction -- needs refactoring (ignore errors)
+        return (
+        <div>
+            {data.map((el, index) => {
+                return (
+                    <table key={index}>
+                        <tbody>
+                            <div>
+                                <Link href="/payment">
+                                        <button>Go to Payment</button>
+                                </Link>
+                            </div>
+                            <tr>
+                                <td>Title:</td>
+                                <td><div>{el.title}</div></td>
+                            </tr>
+                            <tr>
+                                <td>Description:</td>
+                                <td><div>{el.description}</div></td>
+                            </tr>
+                            <tr>
+                                <td>Published:</td>
+                                <td><div>{el.published.toString()}</div></td>
+                            </tr>
+                            <tr>
+                                <td>Starting Price:</td>
+                                <td><div>{el.initial_price}</div></td>
+                            </tr>
+                            <tr>
+                                <td>Decrement amount:</td>
+                                <td><div>{el.decrement_amount}</div></td>
+                            </tr>
+                            <tr>
+                                <td>Reserve Price:</td>
+                                <td><div>{el.reserve_price}</div></td>
+                            </tr>
+                            <tr>
+                                <td>Current Bid:</td>
+                                <td><div>{el.current_bid}</div></td>
+                            </tr>
+                            <tr>
+                                <td>Created at:</td>
+                                <td><div>{el.created_at}</div></td>
+                            </tr>
+                            <tr>
+                                <td>Images:</td>
+                                {el.pictures.map((element, index) => {
+                                    return (
+                                        <td key={index}>
+                                            <img src={element}/>
+                                        </td>
+                                    )
+                                })}
+                            </tr>
+                        </tbody>
+                    </table>
+                )
+            })}    
+            </div>
+            )
     } else {
         return (
             <div>
