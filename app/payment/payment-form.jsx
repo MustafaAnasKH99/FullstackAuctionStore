@@ -18,7 +18,7 @@ export default function PaymentForm({ session }) {
   const [cardName,setCardName] = useState('');
   const [expiry,setExpiry] = useState('');
   const [securityCode,setSecurityCode] = useState('');
-
+  const [cardValid, setcardValid] = useState(null);
 
 
   const user = session?.user
@@ -101,6 +101,14 @@ export default function PaymentForm({ session }) {
         setLoading(false)
     }
   }
+  function checkCard(card){
+    if(card.length === 16){
+        setcardValid(true)
+    }else{
+        setcardValid(false)
+    }
+    setCardNumber(card)
+  }
   return (
     <>
         <div className="flex">
@@ -151,10 +159,11 @@ export default function PaymentForm({ session }) {
                             <td>Credit Card Number:</td>
                             <td>            
                                 <input type="text"
+                                data-testid="ccf"
                                 placeholder="0000-0000-0000-0000"
                                 value={cardNumber}
                                 name="CardNumber"
-                                onChange={ev => setCardNumber(ev.target.value)} />
+                                onChange={ev => checkCard(ev.target.value)} />
                             </td>
                         </tr>
                         <tr>
@@ -193,7 +202,12 @@ export default function PaymentForm({ session }) {
                         onClick={() => submitPayment({cardNumber, cardName, expiry, securityCode})}>
                         Submit
                     </button>
-                </div>
+                {!cardValid && 
+                    <div className='bg-red-900' data-testid="error">
+                        Error Invalid Card
+                    </div>
+                }
+            </div>
         </div>
     </>
   );
