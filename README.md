@@ -30,9 +30,13 @@ Our project focuses on creating a highly compatible front-end and back-end syste
 To run the project locally, follow these steps: 
  
 1. Clone the repository:  `git clone`
-2. Install dependencies:  `npm install`
-3. Start the development server:  `npm run dev `
-4. Access the website at  http://localhost:3000 
+2. Navigate to the root directory: `cd ./FullstackAuctionStore`
+3. Install dependencies:  `npm install`
+4. Start the development server:  `npm run dev `
+5. Access the website at  http://localhost:3000
+6. to run tests: `npx jest`
+
+> **_NOTE:_** to run this program, you need to have nodejs and npm installed. Install latest version [here](https://nodejs.org/en/download)
  
 ### Contributors 
 - [Mustafa Kharnoub](https://github.com/MustafaAnasKH99) 
