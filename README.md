@@ -25,7 +25,13 @@ Our project focuses on creating a highly compatible front-end and back-end syste
 6) Stripe:
     - Integrating a reliable and developer-friendly payment processing solution.
 
- 
+> **_NOTE:_** to run this program, you need to have access to the database. After you follow the steps below and install the project, create a new `.env.loca` file in the root directory. Paste the below piece of code inside and fill the variable values by the info we send you. Paste the values directly. Do not put double or single quotes around.
+
+```
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+```
+
 ### Installation and Setup 
 To run the project locally, follow these steps: 
  
