@@ -6,7 +6,7 @@ import './globals.css';
 import { Metadata } from 'next';
 
 // Import the Inter font from Google Fonts
-import { Inter } from 'next/font/google';
+import { Raleway } from 'next/font/google';
 
 // Import the Header and Footer components
 import Header from './header';
@@ -17,11 +17,11 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 // import Footer from './footer';
 
 // Initialize the Inter font with a Latin subset
-const inter = Inter({ subsets: ['latin'] });
+const raleway = Raleway({ subsets: ['latin'] });
 
 // Define metadata for the website
 export const metadata = {
-  title: "Auction App",
+  title: "Auctions",
   description: "Quick Auction App",
 };
 
@@ -42,7 +42,7 @@ export default async function RootLayout({
     // Start of the HTML document
     <html lang="en">
       {/* Set the body class to apply the Inter font */}
-      <body className={inter.className}>
+      <body className={raleway.className}>
         {/* Include the Header component */}
         <Header session={session}/>
 

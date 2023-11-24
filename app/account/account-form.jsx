@@ -88,122 +88,161 @@ export default function AccountForm({ session }) {
   }
 
   return (
-    <div className="form-widget">
-      <div>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={session?.user.email} disabled />
-      </div>
-      <div>
-        <label htmlFor="fullName">Full Name</label>
-        <input
-          id="fullName"
-          type="text"
-          value={fullname || ''}
-          onChange={(e) => setFullname(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="username">Username</label>
-        <input
-          id="username"
-          type="text"
-          value={username || ''}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="website">Website</label>
-        <input
-          id="website"
-          type="url"
-          value={website || ''}
-          onChange={(e) => setWebsite(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="fullname">Full Name</label>
-        <input
-          id="fullname"
-          type="text"
-          value={fname || ''}
-          onChange={(e) => setfName(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="lastname">Last Name</label>
-        <input
-          id="lastname"
-          type="text"
-          value={lname || ''}
-          onChange={(e) => setlName(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="phonenumber">Phone Number</label>
-        <input
-          id="phonenumber"
-          type="text"
-          value={Number || ''}
-          onChange={(e) => setNumber(e.target.value)}
-        />
-      </div>
+    <div className="max-w-4xl mx-auto">
+      <div className="shadow-md rounded-md p-8">
+        <div className="">
+          <div className="">
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <div>
+                <label htmlFor="fullName" className="block mb-2 text-gray-600">Full Name</label>
+                <input
+                  id="fullName"
+                  type="text"
+                  value={fullname || ''}
+                  onChange={(e) => setFullname(e.target.value)}
+                  className="w-8/12 px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-indigo-500"
+                />
+              </div>
+              <div>
+                <label htmlFor="username" className="block mb-2 text-gray-600">Username</label>
+                <input
+                  id="username"
+                  type="text"
+                  value={username || ''}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="w-8/12 px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-indigo-500"
+                />
+              </div>
+              <div>
+                <label htmlFor="website" className="block mb-2 text-gray-600">Website</label>
+                <input
+                  id="website"
+                  type="url"
+                  value={website || ''}
+                  onChange={(e) => setWebsite(e.target.value)}
+                  className="w-8/12 px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-indigo-500"
+                />
+              </div>
+              <div>
+                <label htmlFor="firstName" className="block mb-2 text-gray-600">First Name</label>
+                <input
+                  id="firstName"
+                  type="text"
+                  value={fname || ''}
+                  onChange={(e) => setfName(e.target.value)}
+                  className="w-8/12 px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-indigo-500"
+                />
+              </div>
+              <div>
+                <label htmlFor="lastName" className="block mb-2 text-gray-600">Last Name</label>
+                <input
+                  id="lastName"
+                  type="text"
+                  value={lname || ''}
+                  onChange={(e) => setlName(e.target.value)}
+                  className="w-8/12 px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-indigo-500"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block mb-2 text-gray-600">Email</label>
+                <input
+                  id="email"
+                  type="text"
+                  value={session?.user.email}
+                  disabled
+                  className="w-8/12 px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-indigo-500"
+                />
+              </div>
+            </div>
 
-      <div>
-        <label htmlFor="streetaddress">Street Address</label>
-        <input
-          id="streetaddress"
-          type="text"
-          value={street || ''}
-          onChange={(e) => setStreet(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="province">Province</label>
-        <input
-          id="province"
-          type="text"
-          value={province || ''}
-          onChange={(e) => setProvince(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="country">Country</label>
-        <input
-          id="country"
-          type="text"
-          value={country || ''}
-          onChange={(e) => setCountry(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="postalcode">Postal Code</label>
-        <input
-          id="postalcode"
-          type="text"
-          value={postalCode || ''}
-          onChange={(e) => setPostalCode(e.target.value)}
-        />
-      </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="streetAddress" className="block mb-2 text-gray-600">Street Address</label>
+                <input
+                  id="streetAddress"
+                  type="text"
+                  value={street || ''}
+                  onChange={(e) => setStreet(e.target.value)}
+                  className="w-8/12 px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-indigo-500"
+                />
+              </div>
+              <div>
+                <label htmlFor="province" className="block mb-2 text-gray-600">Province</label>
+                <input
+                  id="province"
+                  type="text"
+                  value={province || ''}
+                  onChange={(e) => setProvince(e.target.value)}
+                  className="w-8/12 px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-indigo-500"
+                />
+              </div>
+              <div>
+                <label htmlFor="country" className="block mb-2 text-gray-600">Country</label>
+                <input
+                  id="country"
+                  type="text"
+                  value={country || ''}
+                  onChange={(e) => setCountry(e.target.value)}
+                  className="w-8/12 px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-indigo-500"
+                />
+              </div>
+              <div>
+                <label htmlFor="postalCode" className="block mb-2 text-gray-600">Postal Code</label>
+                <input
+                  id="postalCode"
+                  type="text"
+                  value={postalCode || ''}
+                  onChange={(e) => setPostalCode(e.target.value)}
+                  className="w-8/12 px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-indigo-500"
+                />
+              </div>
+              <div>
+                <label htmlFor="phoneNumber" className="block mb-2 text-gray-600">Phone Number</label>
+                <input
+                  id="phoneNumber"
+                  type="text"
+                  value={Number || ''}
+                  onChange={(e) => setNumber(e.target.value)}
+                  className="w-8/12 px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-indigo-500"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
 
-
-
-      <div>
-        <button
-          className="button primary block"
-          onClick={() => updateProfile({ fullname, username, website, avatar_url, fname, lname, street, Number, province, country, postalCode })}
-          disabled={loading}
-        >
-          {loading ? 'Loading ...' : 'Update'}
-        </button>
-      </div>
-
-      <div>
-        <form action="/auth/signout" method="post">
-          <button className="button block" type="submit">
-            Sign out
+        <div className="mt-4">
+          <button
+            className="rounded-full hover:bg-light_green font-semibold"
+            onClick={() =>
+              updateProfile({
+                fullname,
+                username,
+                website,
+                avatar_url,
+                fname,
+                lname,
+                street,
+                Number,
+                province,
+                country,
+                postalCode,
+              })
+            }
+            disabled={loading}
+          >
+            {loading ? "Loading..." : "Update"}
           </button>
-        </form>
+
+          {/* <form action="/auth/signout" method="post">
+            <button
+              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4"
+              type="submit"
+            >
+              Sign out
+            </button>
+          </form> */}
+        </div>
       </div>
     </div>
-  )
+  );
 }
