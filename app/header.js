@@ -52,38 +52,37 @@ export default function Header({ session }) {
 
   if (!session) {
     return null;
-  }
-  else {
+  } else {
     return (
-      <header className="bg-gray-900 text-white py-4 sticky top-0 z-50">
+      <header className="text-white py-4">
         {/* Header container */}
-        <div className="container mx-auto px-4 flex justify-between items-center">
+        <div className="container flex items-center justify-between">
           {/* Website title */}
-          <h1 className="text-xl font-semibold">Auctions App</h1>
+          <h1 className="text-2xl">Auctions</h1>
           {/* Navigation menu */}
           <nav className="hidden md:block">
-            <ul className="flex gap-x-6">
+            <ul className="flex gap-x-6 justify-center w-full">
               {/* Navigation links */}
               <li>
-                <Link href="/home" className="hover:text-gray-300">
+                <Link href="/home" className="hover:text-#7DE2D1-900">
                   Home
                 </Link>
               </li>
               <li>
                 <Link href="/account" className="hover:text-gray-300">
-                  Account     
+                  Account
                 </Link>
-                </li>
-                <li>
-                  <Link href="/myauctions" className="hover:text-gray-300">
-                    My Auctions
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/create" className="hover:text-gray-300">
-                    Create an Auction
-                  </Link>
-                </li>
+              </li>
+              <li>
+                <Link href="/myauctions" className="hover:text-gray-300">
+                  My Auctions
+                </Link>
+              </li>
+              <li>
+                <Link href="/create" className="hover:text-gray-300">
+                  Create an Auction
+                </Link>
+              </li>
             </ul>
           </nav>
           {/* Social media icons */}
@@ -100,23 +99,29 @@ export default function Header({ session }) {
 // Define the SocialIcons component
 function SocialIcons({ fullname, username }) {
   return (
-    <div className="flex gap-x-4">
-      <table>
+    <div className="">
         <tbody>
           <tr>
-            <td>Full Name:</td>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-12 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+              />
+            </svg>
+
             <td>
               <div>{fullname}</div>
             </td>
           </tr>
-          <tr>
-            <td>Username:</td>
-            <td>
-              <div>{username}</div>
-            </td>
-          </tr>
         </tbody>
-      </table>
     </div>
   );
 }

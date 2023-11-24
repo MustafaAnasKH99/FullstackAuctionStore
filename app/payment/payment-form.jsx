@@ -151,7 +151,7 @@ export default function PaymentForm({ session }) {
                     </tbody>
                 </table>
             </div>
-            <div className="table-container">
+            <div className="table-container w-100">
                 <h2>Credit Card</h2>
                 <table className="mt-15">
                     <tbody>

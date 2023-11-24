@@ -1,6 +1,7 @@
 'use client'
 import { useCallback, useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import '../globals.css'
 
 export default function AccountForm({ session }) {
   const supabase = createClientComponentClient()
