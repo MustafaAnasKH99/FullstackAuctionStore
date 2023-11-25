@@ -221,6 +221,7 @@ function SocialIcons({ fullname, username }) {
   return (
     <div className="pr-5 relative">
       <div className="flex items-center justify-center">
+      <Link href="/account" className="">
         <button
           className="rounded-full hover:bg-light_green"
           style={{ textTransform: "none" }}
@@ -245,6 +246,7 @@ function SocialIcons({ fullname, username }) {
             </svg>
           </div>
         </button>
+      </Link>
       </div>
       {isMenuOpen && (
         <div
