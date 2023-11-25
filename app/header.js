@@ -155,13 +155,77 @@ export default function Header({ session }) {
 }
 
 // Define the SocialIcons component
+// function SocialIcons({ fullname, username }) {
+//   return (
+//     <div className="pr-5">
+//       <Link href="/account" className="">
+//         <button
+//           className="rounded-full hover:bg-light_green"
+//           style={{ textTransform: "none" }}
+//         >
+//           <div className="flex items-center">
+//             <div>{fullname}</div>
+            // <svg
+            //   xmlns="http://www.w3.org/2000/svg"
+            //   fill="none"
+            //   viewBox="0 0 24 24"
+            //   strokeWidth={1.5}
+            //   stroke="currentColor"
+            //   className="w-8 h-6 pl-2"
+            // >
+            //   <path
+            //     strokeLinecap="round"
+            //     strokeLinejoin="round"
+            //     d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+            //   />
+            // </svg>
+//           </div>
+//         </button>
+//       </Link>
+//     </div>
+//   );
+// }
+
 function SocialIcons({ fullname, username }) {
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prevState) => !prevState);
+  };
+
+  const handleSignOut = async () => {
+    try {
+      const response = await fetch('/auth/signout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // Add any necessary headers
+        },
+        // Add any body data if needed
+      });
+
+      if (response.ok) {
+        // Sign-out successful
+        console.log('Sign-out successful');
+        // Perform further actions upon successful sign-out if needed
+      } else {
+        // Handle sign-out error
+        console.error('Sign-out failed');
+      }
+    } catch (error) {
+      console.error('Error during sign-out:', error);
+    }
+  };
+
   return (
-    <div className="pr-5">
-      <Link href="/account" className="">
+    <div className="pr-5 relative">
+      <div className="flex items-center justify-center">
         <button
           className="rounded-full hover:bg-light_green"
           style={{ textTransform: "none" }}
+          onMouseEnter={() => setIsMenuOpen(true)}
+          onMouseLeave={() => setIsMenuOpen(false)}
         >
           <div className="flex items-center">
             <div>{fullname}</div>
@@ -181,7 +245,27 @@ function SocialIcons({ fullname, username }) {
             </svg>
           </div>
         </button>
-      </Link>
+      </div>
+      {isMenuOpen && (
+        <div
+          className="absolute top-12border rounded-full shadow-md py-2 px-4"
+          onMouseEnter={() => setIsMenuOpen(true)}
+          onMouseLeave={() => setIsMenuOpen(false)}
+        >
+          <ul classname ="rounded-full">
+            <li>
+              <button
+                className="hover:text-light_green"
+                onClick={handleSignOut}
+                onMouseEnter={() => setIsMenuOpen(true)}
+                onMouseLeave={() => setIsMenuOpen(false)}
+              >
+                Sign Out
+              </button>
+            </li>
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
