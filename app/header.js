@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Manrope }  from 'next/font/google';
-
+import { useRouter } from 'next/navigation'
 
 const manrope = Manrope({ subsets: ['latin'] });
 
@@ -20,7 +20,6 @@ export default function Header({ session }) {
   const [auctions, setAuctions] = useState([]);
   const [loading, setLoading] = useState(false);
   const user = session?.user;
-
 
   // this function gets user data
   const getProfile = useCallback(async () => {
@@ -44,7 +43,7 @@ export default function Header({ session }) {
         setAvatarUrl(data.avatar_url);
       }
     } catch (error) {
-      alert("Error loading user data!");
+      // alert("Error loading user data!");
     } finally {
       setLoading(false);
     }
@@ -187,7 +186,7 @@ export default function Header({ session }) {
 // }
 
 function SocialIcons({ fullname, username }) {
-
+  const router = useRouter()
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -208,6 +207,7 @@ function SocialIcons({ fullname, username }) {
       if (response.ok) {
         // Sign-out successful
         console.log('Sign-out successful');
+        router.push("/")
         // Perform further actions upon successful sign-out if needed
       } else {
         // Handle sign-out error
@@ -254,7 +254,7 @@ function SocialIcons({ fullname, username }) {
           onMouseEnter={() => setIsMenuOpen(true)}
           onMouseLeave={() => setIsMenuOpen(false)}
         >
-          <ul classname ="rounded-full">
+          <ul className ="rounded-full">
             <li>
               <button
                 className="hover:text-light_green"

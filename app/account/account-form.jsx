@@ -48,7 +48,7 @@ export default function AccountForm({ session }) {
         setPostalCode(data.phone_number)
       }
     } catch (error) {
-      alert('Error loading user data!')
+      // alert('Error loading user data!')
     } finally {
       setLoading(false)
     }
