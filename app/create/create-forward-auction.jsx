@@ -66,7 +66,6 @@ export default function CreateForwardAuction({ session }) {
     } else {
         return (
             <div>
-                <h2>Create a Forward Auction</h2>
                 <div>
                     <button onClick={() => setIsPublished(!isPublished)}>{isPublished ? "Published" : "Unpublished"}</button>
                 </div>

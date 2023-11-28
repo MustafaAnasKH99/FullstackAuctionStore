@@ -12,7 +12,7 @@ export default function CreateAuction({ session }) {
 
     return (
         <div>
-            <h1>Create a listing from here</h1>
+            <h1>Toggle Type of listing below</h1>
             <div>
                 { open ? <CreateForwardAuction session={session} /> : <CreateDutchAuction session={session} />}
             </div>

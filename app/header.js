@@ -153,38 +153,6 @@ export default function Header({ session }) {
   }
 }
 
-// Define the SocialIcons component
-// function SocialIcons({ fullname, username }) {
-//   return (
-//     <div className="pr-5">
-//       <Link href="/account" className="">
-//         <button
-//           className="rounded-full hover:bg-light_green"
-//           style={{ textTransform: "none" }}
-//         >
-//           <div className="flex items-center">
-//             <div>{fullname}</div>
-            // <svg
-            //   xmlns="http://www.w3.org/2000/svg"
-            //   fill="none"
-            //   viewBox="0 0 24 24"
-            //   strokeWidth={1.5}
-            //   stroke="currentColor"
-            //   className="w-8 h-6 pl-2"
-            // >
-            //   <path
-            //     strokeLinecap="round"
-            //     strokeLinejoin="round"
-            //     d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-            //   />
-            // </svg>
-//           </div>
-//         </button>
-//       </Link>
-//     </div>
-//   );
-// }
-
 function SocialIcons({ fullname, username }) {
   const router = useRouter()
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -193,7 +161,7 @@ function SocialIcons({ fullname, username }) {
     setIsMenuOpen((prevState) => !prevState);
   };
 
-  const handleSignOut = async () => {
+  const handleSignOut = async () => { 
     try {
       const response = await fetch('/auth/signout', {
         method: 'POST',
@@ -254,20 +222,19 @@ function SocialIcons({ fullname, username }) {
           onMouseEnter={() => setIsMenuOpen(true)}
           onMouseLeave={() => setIsMenuOpen(false)}
         >
-          <ul className ="rounded-full">
-            <li>
+          <ul>
+            <form action="/auth/signout" method="post">
               <button
                 className="hover:text-light_green"
-                onClick={handleSignOut}
-                onMouseEnter={() => setIsMenuOpen(true)}
-                onMouseLeave={() => setIsMenuOpen(false)}
+                type="submit"
               >
-                Sign Out
+                Sign out
               </button>
-            </li>
+            </form>
           </ul>
         </div>
       )}
     </div>
   );
 }
+

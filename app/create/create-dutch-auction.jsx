@@ -69,7 +69,6 @@ export default function CreateDutchAuction({ session }) {
     } else {
         return (
             <div>
-                <h2>Create a Dutch Auction</h2>
                 <div>
                     <button onClick={() => setIsPublished(!isPublished)}>{isPublished ? "Published" : "Unpublished"}</button>
                 </div>
