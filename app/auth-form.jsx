@@ -4,7 +4,9 @@ import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 export default async function AuthForm() {
+  
   const supabase = createClientComponentClient()
+  
   return (
     <>
       <Auth
