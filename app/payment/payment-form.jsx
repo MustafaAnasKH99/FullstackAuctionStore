@@ -1,8 +1,10 @@
 "use client"
 import { useCallback, useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-
+import { useSearchParams } from 'next/navigation'
+import Link from 'next/link'
 export default function PaymentForm({ session }) {
+  const searchParams = useSearchParams()
   const supabase = createClientComponentClient()
   const [loading, setLoading] = useState(true)
   const [fname,setfName] = useState(null);
@@ -12,14 +14,15 @@ export default function PaymentForm({ session }) {
   const [province,setProvince] = useState(null);
   const [country,setCountry] = useState(null);
   const [postalCode,setPostalCode] = useState(null);
-  const [totalcost,setTotalcost] = useState("$ 200");
+  const [totalcost,setTotalcost] = useState(searchParams.get("price"));
 
   const [cardNumber,setCardNumber] = useState('');
   const [cardName,setCardName] = useState('');
   const [expiry,setExpiry] = useState('');
   const [securityCode,setSecurityCode] = useState('');
-  const [cardValid, setcardValid] = useState(null);
+  const [cardValid, setcardValid] = useState(true);
 
+  const [receipt, setreceipt] = useState(null);
 
   const user = session?.user
   const getCreditCard = useCallback(async () => {
@@ -41,7 +44,6 @@ export default function PaymentForm({ session }) {
         }
     } catch (error) {
         console.log(error)
-    //   alert('Error loading user data!')
     } finally {
       setLoading(false)
     }
@@ -71,6 +73,8 @@ export default function PaymentForm({ session }) {
         setCountry(data.country)
         setPostalCode(data.postal_code)
       }
+
+
     } catch (error) {
         console.log(error)
     //   alert('Error loading user data!')
@@ -96,8 +100,10 @@ export default function PaymentForm({ session }) {
         if(error) console.log(error)
         // alert("Profile Updated!")
     }catch(error){
+        console.log(error)
         alert("Error uploading data")
     }finally{
+
         setLoading(false)
     }
   }
@@ -146,7 +152,7 @@ export default function PaymentForm({ session }) {
                         </tr>
                         <tr>
                             <td>Total Cost:</td>
-                            <td>{totalcost}</td>
+                            <td>${totalcost}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -202,10 +208,26 @@ export default function PaymentForm({ session }) {
                         </tr>
                     </tbody>
                 </table>
-                    <button className="custombutton"
-                        onClick={() => submitPayment({cardNumber, cardName, expiry, securityCode})}>
-                        Submit
-                    </button>
+                    <div className="mt- rounded-full text-center hover:bg-light_green font-semibold text-lg border border-white">
+                        <Link 
+                            href={{
+                                pathname: "/receipt",
+                                query: {
+                                    "fname": fname,
+                                    "lname": lname,
+                                    "street": street,
+                                    "Number": Number,
+                                    "province": province,
+                                    "country": country,
+                                    "postalCode": postalCode,
+                                    "totalcost": totalcost,
+                                    "timestamp": Date.now()
+                                }
+                            }}
+                            onClick={() => submitPayment({cardNumber, cardName, expiry, securityCode})}>
+                            Submit
+                        </Link>
+                    </div>
                 {!cardValid && 
                     <div className='bg-red-900' data-testid="error">
                         Error Invalid Card

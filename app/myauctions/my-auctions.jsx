@@ -138,7 +138,14 @@ export default function MyAuctions({ session, data, forward_auction }) {
 
                       {/* Payment button */}
                       <div className="w-1/2 pl-4 ">
-                        <Link href="/payment">
+                      <Link 
+                        href={{
+                          pathname: "/payment",
+                          query: {
+                              "price": el.initial_price,
+                          }
+                        }}>
+
                           <button className="rounded-full hover:bg-light_green font-semibold">
                             Pay
                           </button>
@@ -237,7 +244,13 @@ export default function MyAuctions({ session, data, forward_auction }) {
 
                   {/* Payment button */}
                   <div className="relative w-1/2 pl-4 ">
-                    <Link href="/payment">
+                    <Link 
+                     href={{
+                      pathname: "/payment",
+                      query: {
+                          "price": el.initial_price,
+                      }
+                    }}>
                       <button className="absolute right-0 top-1/2 rounded-full hover:bg-light_green font-semibold">
                         Pay
                       </button>
