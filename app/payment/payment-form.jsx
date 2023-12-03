@@ -114,7 +114,7 @@ export default function PaymentForm({ session }) {
         <div className="flex">
             <div className="table-container">
                 <h2>Winning Bidder</h2>
-                <table className="mt-15">
+                <table className="mt-15 mr-20">
                     <tbody>
                         <tr>
                             <td>First Name:</td>
@@ -151,19 +151,20 @@ export default function PaymentForm({ session }) {
                     </tbody>
                 </table>
             </div>
-            <div className="table-container w-100">
+            <div className="table-container w-100 ml-20">
                 <h2>Credit Card</h2>
                 <table className="mt-15">
                     <tbody>
                         <tr>
-                            <td>Credit Card Number:</td>
+                            <td >Credit Card Number:</td>
                             <td>            
                                 <input type="text"
                                 data-testid="ccf"
                                 placeholder="0000-0000-0000-0000"
                                 value={cardNumber}
                                 name="CardNumber"
-                                onChange={ev => checkCard(ev.target.value)} />
+                                onChange={ev => checkCard(ev.target.value)} 
+                                className='w-full'/>
                             </td>
                         </tr>
                         <tr>
@@ -173,7 +174,8 @@ export default function PaymentForm({ session }) {
                                 placeholder="John Doe"
                                 value={cardName}
                                 name="CardName"
-                                onChange={ev => setCardName(ev.target.value)}/>
+                                onChange={ev => setCardName(ev.target.value)}
+                                className='w-full'/>
                             </td>
                         </tr>
                         <tr>
@@ -183,7 +185,8 @@ export default function PaymentForm({ session }) {
                                 placeholder="00/00"
                                 value={expiry}
                                 name="Expiry"
-                                onChange={ev => setExpiry(ev.target.value)}/>
+                                onChange={ev => setExpiry(ev.target.value)}
+                                className='w-full'/>
                             </td>
                         </tr>
                         <tr>
@@ -193,7 +196,8 @@ export default function PaymentForm({ session }) {
                                 placeholder="000"
                                 value={securityCode}
                                 name="SecurityCode"
-                                onChange={ev => setSecurityCode(ev.target.value)}/>
+                                onChange={ev => setSecurityCode(ev.target.value)}
+                                className='w-full'/>
                             </td>
                         </tr>
                     </tbody>
