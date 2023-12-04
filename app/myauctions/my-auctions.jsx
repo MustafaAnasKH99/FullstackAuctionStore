@@ -8,7 +8,7 @@ export default function MyAuctions({ session, data, forward_auction }) {
   const [loading, setLoading] = useState(false);
   const [forward, setForward] = useState([]);
   const [dutch, setDutch] = useState([]);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentImageIndices, setCurrentImageIndices] = useState(data.map(() => 0));
 
   const handleSearch = (filter) => {
     let filteredForwardAuctions = forward_auction.filter((auction) => {
@@ -67,22 +67,21 @@ export default function MyAuctions({ session, data, forward_auction }) {
               <table key={index}>
                 <tbody>
                   <tr>
-                    <div className="flex">
+                    <div className="flex my-5 items-start">
                       {/* Images */}
-                      <div className="relative w-1/4">
+                      <div className="relative w-40 h-40 mr-5">
                         <img
-                          className="w-full h-full object-cover"
-                          src={el.pictures[currentImageIndex]}
+                          className="w-full h-full object-cover border-2 border-dark_green rounded-2xl"
+                          src={el.pictures[currentImageIndices[index]]}
                           alt="Listing"
                         />
                         <button
                           className="absolute left-0 top-1/2 transform -translate-y-1/2 rounded-full hover:bg-light_green font-semibold"
-                          onClick={() =>
-                            setCurrentImageIndex(
-                              (currentImageIndex - 1 + el.pictures.length) %
-                                el.pictures.length
-                            )
-                          }
+                          onClick={() => {
+                            const newCurrentImageIndices = [...currentImageIndices];
+                            newCurrentImageIndices[index] = (newCurrentImageIndices[index] - 1) % el.pictures.length;
+                            setCurrentImageIndices(newCurrentImageIndices);
+                          }}
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +89,7 @@ export default function MyAuctions({ session, data, forward_auction }) {
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="w-6 h-6"
+                            className="w-2 h-2"
                           >
                             <path
                               strokeLinecap="round"
@@ -101,11 +100,11 @@ export default function MyAuctions({ session, data, forward_auction }) {
                         </button>
                         <button
                           className="absolute right-0 top-1/2 transform -translate-y-1/2 rounded-full hover:bg-light_green font-semibold"
-                          onClick={() =>
-                            setCurrentImageIndex(
-                              (currentImageIndex + 1) % el.pictures.length
-                            )
-                          }
+                          onClick={() => {
+                            const newCurrentImageIndices = [...currentImageIndices];
+                            newCurrentImageIndices[index] = (newCurrentImageIndices[index] + 1) % el.pictures.length;
+                            setCurrentImageIndices(newCurrentImageIndices);
+                          }}
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +112,7 @@ export default function MyAuctions({ session, data, forward_auction }) {
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="w-6 h-6"
+                            className="w-2 h-2"
                           >
                             <path
                               strokeLinecap="round"
@@ -126,18 +125,18 @@ export default function MyAuctions({ session, data, forward_auction }) {
 
                       {/* Listing information */}
                       <div className="w-1/2 pl-4">
-                        <div>{el.title}</div>
-                        <div>{el.description}</div>
-                        <div>Posted: {el.published.toString()}</div>
-                        <div>Starting Price: {el.initial_price}</div>
-                        <div>Decrement amount: {el.decrement_amount}</div>
-                        <div>Reserve Price: {el.reserve_price}</div>
-                        <div>Current Bid: {el.current_bid}</div>
-                        <div>Created at: {el.created_at}</div>
+                        <div className="text-lg text-light_green font-semibold">{el.title}</div>
+                        <div className="flex text-sm font-medium">Description: <div className="font-extralight ml-2">{el.description}</div></div>
+                        <div className="flex text-sm font-medium">Posted: <div className="font-extralight ml-2">{el.published.toString()}</div></div>
+                        <div className="flex text-sm font-medium">Starting Price: <div className="font-extralight ml-2">{el.initial_price}</div></div>
+                        <div className="flex text-sm font-medium">Decrement amount: <div className="font-extralight ml-2">{el.decrement_amount}</div></div>
+                        <div className="flex text-sm font-medium"> Reserve Price: <div className="font-extralight ml-2">{el.reserve_price}</div></div>
+                        <div className="flex text-sm font-medium">Current Bid: <div className="font-extralight ml-2">{el.current_bid}</div></div>
+                        <div className="flex text-sm font-medium">Created at: <div className="font-extralight ml-2">{new Date(el.created_at).toLocaleDateString()}</div></div>
                       </div>
 
                       {/* Payment button */}
-                      <div className="w-1/2 pl-4 ">
+                      <div className="relative ml-40">
                       <Link 
                         href={{
                           pathname: "/payment",
@@ -173,22 +172,21 @@ export default function MyAuctions({ session, data, forward_auction }) {
           return (
             <table key={index}>
               <tbody>
-                <div className="flex">
+                <div className="flex my-5 items-start">
                   {/* Images */}
-                  <div className="relative">
+                  <div className="relative w-40 h-40 mr-5">
                     <img
-                      className="w-84 h-64 object-cover"
-                      src={el.pictures[currentImageIndex]}
+                      className="w-full h-full object-cover border-2 border-dark_green rounded-2xl"
+                      src={el.pictures[currentImageIndices[index]]}
                       alt="Listing"
                     />
                     <button
                       className="absolute left-0 top-1/2 transform -translate-y-1/2 rounded-full hover:bg-light_green font-semibold"
-                      onClick={() =>
-                        setCurrentImageIndex(
-                          (currentImageIndex - 1 + el.pictures.length) %
-                            el.pictures.length
-                        )
-                      }
+                      onClick={() => {
+                        const newCurrentImageIndices = [...currentImageIndices];
+                        newCurrentImageIndices[index] = (newCurrentImageIndices[index] - 1) % el.pictures.length;
+                        setCurrentImageIndices(newCurrentImageIndices);
+                      }}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -196,7 +194,7 @@ export default function MyAuctions({ session, data, forward_auction }) {
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="w-6 h-6"
+                        className="w-2 h-2"
                       >
                         <path
                           strokeLinecap="round"
@@ -207,11 +205,11 @@ export default function MyAuctions({ session, data, forward_auction }) {
                     </button>
                     <button
                       className="absolute right-0 top-1/2 transform -translate-y-1/2 rounded-full hover:bg-light_green font-semibold"
-                      onClick={() =>
-                        setCurrentImageIndex(
-                          (currentImageIndex + 1) % el.pictures.length
-                        )
-                      }
+                      onClick={() => {
+                        const newCurrentImageIndices = [...currentImageIndices];
+                        newCurrentImageIndices[index] = (newCurrentImageIndices[index] + 1) % el.pictures.length;
+                        setCurrentImageIndices(newCurrentImageIndices);
+                      }}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -219,7 +217,7 @@ export default function MyAuctions({ session, data, forward_auction }) {
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="w-6 h-6"
+                        className="w-2 h-2"
                       >
                         <path
                           strokeLinecap="round"
@@ -232,18 +230,18 @@ export default function MyAuctions({ session, data, forward_auction }) {
 
                   {/* Listing information */}
                   <div className="w-1/2 pl-4">
-                    <div>{el.title}</div>
-                    <div>{el.description}</div>
-                    <div>Posted: {el.published.toString()}</div>
-                    <div>Starting Price: {el.initial_price}</div>
-                    <div>Decrement amount: {el.decrement_amount}</div>
-                    <div>Reserve Price: {el.reserve_price}</div>
-                    <div>Current Bid: {el.current_bid}</div>
-                    <div>Created at: {el.created_at}</div>
+                    <div className="text-lg text-light_green font-semibold">{el.title}</div>
+                    <div className="flex text-sm font-medium">Description: <div className="font-extralight ml-2">{el.description}</div></div>
+                    <div className="flex text-sm font-medium">Posted: <div className="font-extralight ml-2">{el.published.toString()}</div></div>
+                    <div className="flex text-sm font-medium">Starting Price: <div className="font-extralight ml-2">{el.initial_price}</div></div>
+                    <div className="flex text-sm font-medium">Decrement amount: <div className="font-extralight ml-2">{el.decrement_amount}</div></div>
+                    <div className="flex text-sm font-medium"> Reserve Price: <div className="font-extralight ml-2">{el.reserve_price}</div></div>
+                    <div className="flex text-sm font-medium">Current Bid: <div className="font-extralight ml-2">{el.current_bid}</div></div>
+                    <div className="flex text-sm font-medium">Created at: <div className="font-extralight ml-2">{new Date(el.created_at).toLocaleDateString()}</div></div>
                   </div>
 
                   {/* Payment button */}
-                  <div className="relative w-1/2 pl-4 ">
+                  <div className="relative ml-40">
                     <Link 
                      href={{
                       pathname: "/payment",
