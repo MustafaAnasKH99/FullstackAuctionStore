@@ -118,9 +118,9 @@ export default function PaymentForm({ session }) {
   return (
     <>
         <div className="flex">
-            <div className="table-container">
-                <h2 className="font-extrabold mb-5">Winning Bidder</h2>
-                <table className="mt-15 mr-20">
+            <div className="mt-15 mr-20 ml-20">
+                <h2 className='font-bold' className="font-extrabold mb-5">Winning Bidder</h2>
+                <table className="gap-x-10">
                     <tbody>
                         <tr>
                             <td className='font-bold'>First Name:</td>
