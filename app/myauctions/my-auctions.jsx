@@ -172,7 +172,7 @@ export default function MyAuctions({ session, data, forward_auction }) {
           return (
             <table key={index}>
               <tbody>
-                <div className="flex my-5 items-start">
+                <div className="flex my-5 mx-10 items-start">
                   {/* Images */}
                   <div className="relative w-40 h-40 mr-5">
                     <img
