@@ -118,51 +118,62 @@ export default function PaymentForm({ session }) {
   return (
     <>
         <div className="flex">
+<<<<<<< HEAD
             <div className="table-container">
                 <h2 className="font-extrabold mb-5">Winning Bidder</h2>
                 <table className="mt-15 mr-20">
+=======
+            <div className="mt-15 mr-20 ml-20">
+                <h2 className='font-bold'>Winning Bidder</h2>
+                <table className="gap-x-10">
+>>>>>>> 5264e0c (Added bold text to differentiate headings and integrated payment action into error handling)
                     <tbody>
                         <tr>
-                            <td>First Name:</td>
+                            <td className='font-bold'>First Name:</td>
                             <td>{fname}</td>
                         </tr>
                         <tr>
-                            <td>Last Name:</td>
+                            <td className='font-bold'>Last Name:</td>
                             <td>{lname}</td>
                         </tr>
                         <tr>
-                            <td>Street:</td>
+                            <td className='font-bold'>Street:</td>
                             <td>{street}</td>
                         </tr>
                         <tr>
-                            <td>Number:</td>
-                            <td>{Number}</td>
-                        </tr>
-                        <tr>
-                            <td>Province:</td>
-                            <td>{province}</td>
-                        </tr>
-                        <tr>
-                            <td>Country:</td>
-                            <td>{country}</td>
-                        </tr>
-                        <tr>
-                            <td>Postal Code:</td>
+                            <td className='font-bold'>Postal Code:</td>
                             <td>{postalCode}</td>
                         </tr>
                         <tr>
-                            <td>Total Cost:</td>
+                            <td className='font-bold'>Province:</td>
+                            <td>{province}</td>
+                        </tr>
+                        <tr>
+                            <td className='font-bold'>Country:</td>
+                            <td>{country}</td>
+                        </tr>
+                        <tr>
+                            <td className='font-bold'>Number:</td>
+                            <td>{Number}</td>
+                        </tr>
+                        <tr>
+                            <td className='font-bold'>Total Cost:</td>
                             <td>${totalcost}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+<<<<<<< HEAD
             <div className="table-container w-100 ml-20">
                 <h2 className="font-extrabold mb-5">Payment Info</h2>
+=======
+            <div className="table-container w-100">
+                <h2 className='font-bold'>Credit Card</h2>
+>>>>>>> 5264e0c (Added bold text to differentiate headings and integrated payment action into error handling)
                 <table className="mt-15">
                     <tbody>
                         <tr>
-                            <td >Credit Card Number:</td>
+                            <td className='font-bold'>Credit Card Number:</td>
                             <td>            
                                 <input type="text"
                                 data-testid="ccf"
@@ -174,7 +185,7 @@ export default function PaymentForm({ session }) {
                             </td>
                         </tr>
                         <tr>
-                            <td>Name on Card:</td>
+                            <td className='font-bold'>Name on Card:</td>
                             <td>            
                                 <input type="text"
                                 placeholder="John Doe"
@@ -185,7 +196,7 @@ export default function PaymentForm({ session }) {
                             </td>
                         </tr>
                         <tr>
-                            <td>Expiry Date:</td>
+                            <td className='font-bold'>Expiry Date:</td>
                             <td>            
                                 <input type="text"
                                 placeholder="00/00"
@@ -196,7 +207,7 @@ export default function PaymentForm({ session }) {
                             </td>
                         </tr>
                         <tr>
-                            <td>Security Code:</td>
+                            <td className='font-bold'>Security Code:</td>
                             <td>            
                                 <input type="text"
                                 placeholder="000"
@@ -208,7 +219,13 @@ export default function PaymentForm({ session }) {
                         </tr>
                     </tbody>
                 </table>
-                    <div className="mt- rounded-full text-center hover:bg-light_green font-semibold text-lg border border-white">
+                    
+                {!cardValid && 
+                    <div className='bg-red-900' data-testid="error">
+                        Error Invalid Card
+                    </div>
+                    ||
+                    <div className="rounded-full text-center hover:bg-light_green font-semibold text-lg border border-white">
                         <Link 
                             href={{
                                 pathname: "/receipt",
@@ -227,10 +244,6 @@ export default function PaymentForm({ session }) {
                             onClick={() => submitPayment({cardNumber, cardName, expiry, securityCode})}>
                             Submit
                         </Link>
-                    </div>
-                {!cardValid && 
-                    <div className='bg-red-900' data-testid="error">
-                        Error Invalid Card
                     </div>
                 }
             </div>
