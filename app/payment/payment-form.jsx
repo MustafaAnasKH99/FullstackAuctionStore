@@ -118,7 +118,7 @@ export default function PaymentForm({ session }) {
   return (
     <>
         <div className="flex">
-            <div className="table-container">
+            <div className="table-container mx-10">
                 <h2 className="font-extrabold text-lg text-light_green mb-5">Winning Bidder</h2>
                 <table className="mt-15 mr-20">
                     <tbody>
