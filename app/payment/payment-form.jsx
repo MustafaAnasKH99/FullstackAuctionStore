@@ -118,15 +118,9 @@ export default function PaymentForm({ session }) {
   return (
     <>
         <div className="flex">
-<<<<<<< HEAD
             <div className="table-container">
-                <h2 className="font-extrabold mb-5">Winning Bidder</h2>
+                <h2 className="font-extrabold text-lg text-light_green mb-5">Winning Bidder</h2>
                 <table className="mt-15 mr-20">
-=======
-            <div className="mt-15 mr-20 ml-20">
-                <h2 className='font-bold'>Winning Bidder</h2>
-                <table className="gap-x-10">
->>>>>>> 5264e0c (Added bold text to differentiate headings and integrated payment action into error handling)
                     <tbody>
                         <tr>
                             <td className='font-bold'>First Name:</td>
@@ -163,13 +157,8 @@ export default function PaymentForm({ session }) {
                     </tbody>
                 </table>
             </div>
-<<<<<<< HEAD
             <div className="table-container w-100 ml-20">
-                <h2 className="font-extrabold mb-5">Payment Info</h2>
-=======
-            <div className="table-container w-100">
-                <h2 className='font-bold'>Credit Card</h2>
->>>>>>> 5264e0c (Added bold text to differentiate headings and integrated payment action into error handling)
+                <h2 className="font-extrabold text-lg text-light_green mb-5">Payment Info</h2>
                 <table className="mt-15">
                     <tbody>
                         <tr>
