@@ -17,7 +17,8 @@ export default function AccountForm({ session }) {
   const [province,setProvince] = useState(null);
   const [country,setCountry] = useState(null);
   const [postalCode,setPostalCode] = useState(null);
-
+  const [errorP, setPError] = useState(false);
+  const [errorPo, setPoError] = useState(false);
   const user = session?.user
 
   const getProfile = useCallback(async () => {
@@ -42,10 +43,10 @@ export default function AccountForm({ session }) {
         setfName(data.first_name)
         setlName(data.last_name)
         setStreet(data.street_address)
-        setNumber(data.province)
-        setProvince(data.country)
-        setCountry(data.postal_code)
-        setPostalCode(data.phone_number)
+        setNumber(data.phone_number)
+        setProvince(data.province)
+        setCountry(data.country)
+        setPostalCode(data.postal_code)
       }
     } catch (error) {
       // alert('Error loading user data!')
@@ -86,7 +87,24 @@ export default function AccountForm({ session }) {
       setLoading(false)
     }
   }
-
+  function validatePhone(number){
+    const validity = String(number).length === 10 && String(number).match("[0-9]{10}")
+    if(validity){    
+      setPError(false)
+    }else{
+      setPError(true)
+    }
+    setNumber(number)
+  }
+  function validatePostalCode(postcode){
+    const validity = String(postcode).length === 7 && String(postcode).match(/^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i)
+      if(validity){    
+        setPoError(false)
+      }else{
+        setPoError(true)
+      }
+      setPostalCode(postcode)
+  }
   return (
     <div className="max-w-4xl mx-auto">
       <div className="shadow-md rounded-md p-8">
@@ -192,7 +210,7 @@ export default function AccountForm({ session }) {
                   id="postalCode"
                   type="text"
                   value={postalCode || ''}
-                  onChange={(e) => setPostalCode(e.target.value)}
+                  onChange={(e) => validatePostalCode(e.target.value)}
                   className="w-8/12 px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-indigo-500"
                 />
               </div>
@@ -202,7 +220,7 @@ export default function AccountForm({ session }) {
                   id="phoneNumber"
                   type="text"
                   value={Number || ''}
-                  onChange={(e) => setNumber(e.target.value)}
+                  onChange={(e) => validatePhone(e.target.value)}
                   className="w-8/12 px-4 py-2 border border-gray-300 rounded-2xl focus:outline-none focus:border-indigo-500"
                 />
               </div>
@@ -211,36 +229,39 @@ export default function AccountForm({ session }) {
         </div>
 
         <div className="mt-4">
-          <button
-            className="rounded-full hover:bg-light_green font-semibold"
-            onClick={() =>
-              updateProfile({
-                fullname,
-                username,
-                website,
-                avatar_url,
-                fname,
-                lname,
-                street,
-                Number,
-                province,
-                country,
-                postalCode,
-              })
-            }
-            disabled={loading}
-          >
-            {loading ? "Loading..." : "Update"}
-          </button>
-
-          {/* <form action="/auth/signout" method="post">
+          {(errorP && 
+            <div>
+              Error Invalid Phone Number 
+            </div>
+          ) || (
+            errorPo && 
+            <div>
+              Error Invalid Postal Code
+            </div>
+          )
+          ||
             <button
-              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4"
-              type="submit"
+              className="rounded-full hover:bg-light_green font-semibold"
+              onClick={() =>
+                updateProfile({
+                  fullname,
+                  username,
+                  website,
+                  avatar_url,
+                  fname,
+                  lname,
+                  street,
+                  Number,
+                  province,
+                  country,
+                  postalCode,
+                })
+              }
+              disabled={loading}
             >
-              Sign out
+              {loading ? "Loading..." : "Update"}
             </button>
-          </form> */}
+          }
         </div>
       </div>
     </div>
