@@ -21,6 +21,8 @@ export default function PaymentForm({ session }) {
   const [expiry,setExpiry] = useState('');
   const [securityCode,setSecurityCode] = useState('');
   const [cardValid, setcardValid] = useState(true);
+  const [cardEValid, setcardEValid] = useState(true);
+  const [cardCValid, setcardCValid] = useState(true);
 
   const [receipt, setreceipt] = useState(null);
 
@@ -108,12 +110,39 @@ export default function PaymentForm({ session }) {
     }
   }
   function checkCard(card){
-    if(card.length === 16){
+    const validity = card.length === 16 && String(card).match("[0-9]{16}");
+    if(validity){
         setcardValid(true)
     }else{
         setcardValid(false)
     }
     setCardNumber(card)
+  }
+  function checkExpiry(expiry){
+    const validity = expiry.length === 5 && String(expiry).match(/^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/);
+    if(validity){
+        const date = new Date();
+        const month = expiry.slice(0,2)
+        const year = expiry.slice(3)
+        if(parseInt(year) > date.getFullYear()-2000){
+            setcardEValid(true)
+        }else if(parseInt(year) === date.getFullYear()-2000 && parseInt(month) >=date.getMonth()+1){
+            setcardEValid(true)
+        }else{
+            setcardEValid(false)
+        }
+    }else{
+        setcardEValid(false)
+    }
+    setExpiry(expiry)
+  }
+  function checkCode(code){
+    if(code.length === 3 && String(code).match("[0-9]{3}")){
+        setcardCValid(true)
+    }else{
+        setcardCValid(false)
+    }
+    setSecurityCode(code)
   }
   return (
     <>
@@ -191,7 +220,7 @@ export default function PaymentForm({ session }) {
                                 placeholder="00/00"
                                 value={expiry}
                                 name="Expiry"
-                                onChange={ev => setExpiry(ev.target.value)}
+                                onChange={ev => checkExpiry(ev.target.value)}
                                 className='w-full'/>
                             </td>
                         </tr>
@@ -202,16 +231,16 @@ export default function PaymentForm({ session }) {
                                 placeholder="000"
                                 value={securityCode}
                                 name="SecurityCode"
-                                onChange={ev => setSecurityCode(ev.target.value)}
+                                onChange={ev => checkCode(ev.target.value)}
                                 className='w-full'/>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                     
-                {!cardValid && 
+                {(!cardValid || !cardCValid || !cardEValid)&& 
                     <div className='bg-red-900' data-testid="error">
-                        Error Invalid Card
+                        Error, Invalid Payment Details
                     </div>
                     ||
                     <div className="rounded-full text-center hover:bg-light_green font-semibold text-lg border border-white">
