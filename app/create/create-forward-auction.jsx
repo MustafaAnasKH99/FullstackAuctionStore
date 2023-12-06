@@ -10,9 +10,11 @@ export default function CreateForwardAuction({ session }) {
     const [ description, setDescription ] = useState("")
     const [ images, setImages ] = useState([])
     const [isPublished, setIsPublished] = useState(false)
-    const [ price, setPrice ] = useState("")
     const [ endstime, setEndsTime ] = useState(Date.now())
     const [ loading, setLoading ] = useState(false)
+
+    const [ price, setPrice ] = useState("")
+    const [priceError, setpriceError] = useState(true); 
 
     async function createAuction({ title, description, images, isPublished, price, endstime }) {
         try {
@@ -40,6 +42,15 @@ export default function CreateForwardAuction({ session }) {
           setLoading(false)
           alert('Forward Auction Created!')
         }
+    }
+    function checkPrice(value){
+        const validity = String(value).match("[0-9]{1,9}") && parseInt(value) >= 0
+        if(validity){
+            setpriceError(false)
+        }else{
+            setpriceError(true)
+        } 
+        setPrice(value)
     }
 
     useEffect(() => {
@@ -102,7 +113,7 @@ export default function CreateForwardAuction({ session }) {
                     id="price"
                     type="number"
                     value={price}
-                    onChange={(e) => setPrice(e.target.value)}
+                    onChange={(e) => checkPrice(e.target.value)}
                     />
                 </div>
                 <div>
@@ -114,10 +125,12 @@ export default function CreateForwardAuction({ session }) {
                     onChange={(e) => handleTime(e.target.value)}
                 />
                 </div>
-                
+                {(priceError && <div>Enter a valid price</div>)
+                    ||
                 <div>
                     <button onClick={() => createAuction({title, description, images, isPublished, price, endstime})}>Create Auction</button>
                 </div>
+                }
             </div>
         )
     }

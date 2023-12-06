@@ -10,11 +10,17 @@ export default function CreateDutchAuction({ session }) {
     const [ description, setDescription ] = useState("")
     const [ images, setImages ] = useState([])
     const [isPublished, setIsPublished] = useState(false)
-    const [ price, setPrice ] = useState("")
     const [ endstime, setEndsTime ] = useState(Date.now())
     const [ loading, setLoading ] = useState(false)
+    
+    const [ price, setPrice ] = useState("")
     const [ decrementAmount, setDecrementAmount ] = useState("")
     const [ reservePrice, setReservePrice ] = useState("");
+
+    const [priceError, setpriceError] = useState(true); 
+    const [decError, setdecError] = useState(true); 
+    const [resError, setresError] = useState(true); 
+
 
     async function createAuction({ title, description, images, isPublished, price, endstime, decrementAmount, reservePrice}) {
         try {
@@ -43,6 +49,34 @@ export default function CreateDutchAuction({ session }) {
           setLoading(false)
           alert('Dutch Auction Created!')
         }
+    }
+    function checkPrice(value){
+        const validity = String(value).match("[0-9]{1,9}") && parseInt(value) >= 0
+        if(validity){
+            setpriceError(false)
+        }else{
+            setpriceError(true)
+        } 
+        setPrice(value)
+    }
+    function checkdec(value){
+        const validity = String(value).match("[0-9]{1,9}") && parseInt(value) >= 0
+        if(validity){
+            setdecError(false)
+        }else{
+            setdecError(true)
+        } 
+        setDecrementAmount(value)
+
+    }
+    function checkres(value){
+        const validity = String(value).match("[0-9]{1,9}") && parseInt(value) >= 0
+        if(validity){
+            setresError(false)
+        }else{
+            setresError(true)
+        } 
+        setReservePrice(value)
     }
 
  useEffect(() => {
@@ -105,7 +139,7 @@ export default function CreateDutchAuction({ session }) {
                     id="price"
                     type="number"
                     value={price}
-                    onChange={(e) => setPrice(e.target.value)}
+                    onChange={(e) => checkPrice(e.target.value)}
                     />
                 </div>
                 <div>
@@ -114,7 +148,7 @@ export default function CreateDutchAuction({ session }) {
                     id="decrementAmount"
                     type="number"
                     value={decrementAmount}
-                    onChange={(e) => setDecrementAmount(e.target.value)}
+                    onChange={(e) => checkdec(e.target.value)}
                     />
                 </div>
                 <div>
@@ -123,12 +157,16 @@ export default function CreateDutchAuction({ session }) {
                     id="reservePrice"
                     type="number"
                     value={reservePrice}
-                    onChange={(e) => setReservePrice(e.target.value)}
+                    onChange={(e) => checkres(e.target.value)}
                     />
-                </div>                
+                </div>
+                { (priceError && <div>Enter a valid price</div>) ||
+                (decError && <div>Enter a valid decrement amount</div>) ||
+                (resError && <div>Enter a valid reserve price</div>) ||
                 <div>
                     <button onClick={() => createAuction({title, description, images, isPublished, price, decrementAmount, reservePrice})}>Create Auction</button>
                 </div>
+                }                
             </div>
         )
     }
