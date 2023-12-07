@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import PaymentForm from '/payment/payment-form';
+import PaymentForm from '@/app/payment/payment-form';
 
 // test('inputs invalid credit card', () => {
 //   render(<PaymentForm/>);

@@ -1,8 +1,7 @@
 module.exports = {
-    testEnvironment: 'jsdom',
-    preset: 'ts-jest',
+    testMatch: ["**/__tests__/*.test.js", "!**/app/**"],
     transform: {
-        '^.+\\.(ts|tsx)?$': 'ts-jest',
-        '^.+\\.(js|jsx)$': 'babel-jest',
+       "^.+\\.js$": "babel-jest",
     },
-};
+    setupFiles: ["<rootDir>/.jest/env.js"],
+ };
