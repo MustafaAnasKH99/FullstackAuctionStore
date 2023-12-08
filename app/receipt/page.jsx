@@ -1,6 +1,6 @@
 "use client"
 import { useSearchParams } from 'next/navigation'
-export default function receipt() {
+export default function Receipt() {
     const searchParams = useSearchParams()
     const date = new Date(parseInt(searchParams.get("timestamp")));
     const options = { day: 'numeric', year: 'numeric', month: 'long', hour: 'numeric',minute: 'numeric',second: 'numeric', };
