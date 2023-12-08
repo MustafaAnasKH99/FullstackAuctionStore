@@ -17,6 +17,7 @@ module.exports = {
       'sans': ['Raleway', 'sans-serif'],
     },
     colors: {
+      background_black: '#101010',
       dark_black: '#131515', 
       light_black: '#2B2C28',
       dark_green: '#339989',
