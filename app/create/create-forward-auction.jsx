@@ -163,6 +163,7 @@ export default function CreateForwardAuction({ session }) {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     />
+                    { title.length < 5 ? <button disabled>Suggest a description</button> : <button onClick={() => generateAIDescription(title)}>Suggest a description</button>}
                 </div>
                 <div>
                     <label htmlFor="title">Description</label>
@@ -181,6 +182,7 @@ export default function CreateForwardAuction({ session }) {
                     placeholder="Insert links for images separated by commas ex: Link1, Link2, etc ..."
                     onChange={(e) => handleImages(e.target.value)}
                     />
+                    { description.length < 100 ? <div></div> : <button onClick={() => generateAIImage(description)}>Generate an image from your desccription</button>}
                 </div>
                 <div>
                     <label htmlFor="price">Price</label>

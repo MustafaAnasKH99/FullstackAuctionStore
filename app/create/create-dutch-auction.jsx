@@ -202,13 +202,13 @@ export default function CreateDutchAuction({ session }) {
                 </div>
                 <div>
                     <label htmlFor="title">Choose Images</label>
-                    { description.length < 100 ? <div></div> : <button onClick={() => generateAIImage(description)}>Generate an image from your desccription</button>}
                     <input
                     id="images"
                     type="text"
                     value={images.toString()}
                     onChange={(e) => handleImages(e.target.value)}
                     />
+                    { description.length < 100 ? <div></div> : <button onClick={() => generateAIImage(description)}>Generate an image from your desccription</button>}
                 </div>
                 <div>
                     <label htmlFor="price">Price</label>
