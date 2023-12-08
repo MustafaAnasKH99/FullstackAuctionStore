@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "f7715da8-482a-4725-b43a-531fd015031c",
+		"name": "AI_Assistant",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7167188"
+	},
+	"item": [
+		{
+			"name": "generate a description from title",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://asassistant-z4xrhjgh3q-uc.a.run.app/aiassistant/description/?title=wooden chair",
+					"protocol": "https",
+					"host": [
+						"asassistant-z4xrhjgh3q-uc",
+						"a",
+						"run",
+						"app"
+					],
+					"path": [
+						"aiassistant",
+						"description",
+						""
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "wooden chair"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get image from description prompt",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"prompt\": \"a wooden chair to be listed for a dutch auction\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://asassistant-z4xrhjgh3q-uc.a.run.app/aiassistant/image/",
+					"protocol": "https",
+					"host": [
+						"asassistant-z4xrhjgh3q-uc",
+						"a",
+						"run",
+						"app"
+					],
+					"path": [
+						"aiassistant",
+						"image",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
