@@ -182,7 +182,7 @@ export default function CreateDutchAuction({ session }) {
           src="https://media0.giphy.com/media/VseXvvxwowwCc/giphy.gif?cid=ecf05e47010chjcopxjeg14asyidr12m34nahebft1gbjxl1&ep=v1_gifs_search&rid=giphy.gif&ct=g"
           alt="loading"
         />
-        <h1>I'm coming up with something...</h1>
+        <h1>I am coming up with something...</h1>
       </div>
     );
   } else if (aiImagePreview) {
