@@ -48,6 +48,9 @@ To run the project locally, follow these steps:
 5. Access the website at  http://localhost:3000
 6. to run tests: `npx jest`
 
+### Deployment
+[Check deployed version here](https://fullstack-auction-store-mustafaanaskh99s-projects.vercel.app/)
+
 > **_NOTE:_** to run this program, you need to have nodejs and npm installed. Install latest version [here](https://nodejs.org/en/download)
  
 ### Contributors 

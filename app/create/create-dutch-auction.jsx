@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useCallback, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { generateDescription } from "@/aiassistant_service/controllers/openai";
 import "./styles.css";
 
 export default function CreateDutchAuction({ session }) {
@@ -258,7 +257,7 @@ export default function CreateDutchAuction({ session }) {
             />
             {title.length > 0 ? (
               <button
-                disabled
+                
                 onClick={() => generateAIDescription(title)}
                 className="flex items-center mx-4 w-full rounded-xl hover:bg-light_green"
               >
