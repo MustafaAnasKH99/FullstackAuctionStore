@@ -1,6 +1,0 @@
-# Building the Docker file
-- Open the docker desktop app
-- run `docker build -t image_name --build-arg KEY=openai_key .` where `openai_key` is the key sent to you by the developers or your own openai api key.
-- Then run the container and map the port 4000 of the container on any port you want on your machine (`docker run -p yourport:4000 image_name`)
-
-> **_NOTE:_** this microservice is already deployed, use this endpoint to access it `https://asassistant-z4xrhjgh3q-uc.a.run.app`
