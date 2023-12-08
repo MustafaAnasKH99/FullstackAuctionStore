@@ -181,19 +181,28 @@ export default function CreateDutchAuction({ session }) {
         <img
           src="https://media0.giphy.com/media/VseXvvxwowwCc/giphy.gif?cid=ecf05e47010chjcopxjeg14asyidr12m34nahebft1gbjxl1&ep=v1_gifs_search&rid=giphy.gif&ct=g"
           alt="loading"
+          className="w-96 h-96 rounded-full"
         />
-        <h1>I am coming up with something...</h1>
+        <h1></h1>
+        {loadingDescription ? null : (
+          <div>{/* ... Elements for Dutch auction ... */}</div>
+        )}
       </div>
     );
   } else if (aiImagePreview) {
     return (
-      <div>
-        <img src={aiImageURL} alt="AI generated" />
-        <div>
+      <div className="">
+        <img
+          src={aiImageURL}
+          alt="AI generated"
+          className="flex items-center w-96 border-2"
+        />
+        <div className="flex justify-center my-8">
           <button
             onClick={() => {
               aiImageAccepted();
             }}
+            className="flex items-center mx-4 rounded-xl hover:bg-light_green"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -206,11 +215,14 @@ export default function CreateDutchAuction({ session }) {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                d="M4.5 12.75l6 6 9-13.5"
               />
             </svg>
           </button>
-          <button onClick={() => setAiImagePreview(false)}>
+          <button
+            onClick={() => setAiImagePreview(false)}
+            className="flex items-center mx-4 rounded-xl hover:bg-light_green"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -222,7 +234,7 @@ export default function CreateDutchAuction({ session }) {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                d="M6 18L18 6M6 6l12 12"
               />
             </svg>
           </button>
@@ -231,7 +243,7 @@ export default function CreateDutchAuction({ session }) {
     );
   } else {
     return (
-      <div className="w-96">
+      <div className="">
         <div className="flex flex-col">
           <div className="flex items-center">
             <h1>{isPublished ? "Published" : "Unpublished"}</h1>
@@ -257,7 +269,6 @@ export default function CreateDutchAuction({ session }) {
             />
             {title.length > 0 ? (
               <button
-                
                 onClick={() => generateAIDescription(title)}
                 className="flex items-center mx-4 w-full rounded-xl hover:bg-light_green"
               >
@@ -288,49 +299,57 @@ export default function CreateDutchAuction({ session }) {
             id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-3/4 h-40 resize-none border rounded-md p-2 bg-background_black"
+            className="w-3/4 h-40 resize-none border border-light_black radius rounded-xl p-2 bg-background_black"
             placeholder="Enter description here..."
           ></textarea>
         </div>
         <div className="flex flex-col">
-          <label htmlFor="title" className="font-bold">
+          <label htmlFor="title" className="font-bold mb-2">
             Choose Images
           </label>
-          <input
-            id="images"
-            type="text"
-            value={images.toString()}
-            onChange={(e) => handleImages(e.target.value)}
-          />
-          {description.length < 100 ? (
-            <div></div>
-          ) : (
-            <button onClick={() => generateAIImage(description)}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
-                />
-              </svg>
-              Generate an image from your desccription
-            </button>
-          )}
-          <div className="relative group">
-            <div className="inline-block rounded p-2 hover:bg-gray-200">?</div>
-            <div className=" text-xs absolute z-10 -mt-10 bg-gray-700 text-white px-2 py-1 rounded opacity-0 invisible transition-opacity duration-300 ease-in-out group-hover:opacity-100 group-hover:visible border bg-light_black">
-              Insert links to images seperated by commas
+          <div className="flex justify-between items-center">
+            <div className="relative group">
+              <div className="inline-block rounded p-2 hover:bg-gray-200">
+                ?
+              </div>
+              <div className="w-40 text-xs absolute z-10 -mt-10 bg-gray-700 text-white px-2 py-1 rounded-xl opacity-0 invisible transition-opacity duration-300 ease-in-out group-hover:opacity-100 group-hover:visible border bg-light_black">
+                Insert links to images seperated by commas
+              </div>
             </div>
+            <input
+              id="images"
+              type="text"
+              value={images.toString()}
+              onChange={(e) => handleImages(e.target.value)}
+              className="w-40"
+            />
+            {description.length < 100 ? (
+              <div></div>
+            ) : (
+              <button
+                onClick={() => generateAIImage(description)}
+                className="flex items-center mx-4 w-96 rounded-xl hover:bg-light_green"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6 "
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
+                  />
+                </svg>
+                Generate image
+              </button>
+            )}
           </div>
         </div>
-        <div>
+        <div className="my-4">
           <label htmlFor="price" className="font-bold">
             Price
           </label>
@@ -342,7 +361,7 @@ export default function CreateDutchAuction({ session }) {
             className="w-2/3"
           />
         </div>
-        <div>
+        <div className="my-4">
           <label htmlFor="decrementAmont" className="font-bold">
             Decrement Amount
           </label>
@@ -354,7 +373,7 @@ export default function CreateDutchAuction({ session }) {
             className="w-2/3"
           />
         </div>
-        <div>
+        <div className="my-4">
           <label htmlFor="reservePrice" className="font-bold">
             Reserve Price
           </label>
@@ -366,9 +385,13 @@ export default function CreateDutchAuction({ session }) {
             className="w-2/3"
           />
         </div>
-        {(priceError && <div>Enter a valid price</div>) ||
-          (decError && <div>Enter a valid decrement amount</div>) ||
-          (resError && <div>Enter a valid reserve price</div>) || (
+        {(priceError && <div className="my-8">Enter a valid price</div>) ||
+          (decError && (
+            <div className="my-8">Enter a valid decrement amount</div>
+          )) ||
+          (resError && (
+            <div className="my-8">Enter a valid reserve price</div>
+          )) || (
             <div>
               <button
                 onClick={() =>
@@ -382,6 +405,7 @@ export default function CreateDutchAuction({ session }) {
                     reservePrice,
                   })
                 }
+                className="flex items-center m-8 rounded-xl hover:bg-light_green"
               >
                 Create Auction
               </button>

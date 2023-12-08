@@ -152,23 +152,65 @@ export default function CreateForwardAuction({ session }) {
   } else if (loadingDescription) {
     return (
       <div>
-        <h1>Your assistant AI taking care of it ...</h1>
+        <img
+          src="https://media0.giphy.com/media/VseXvvxwowwCc/giphy.gif?cid=ecf05e47010chjcopxjeg14asyidr12m34nahebft1gbjxl1&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+          alt="loading"
+          className="w-96 h-96 rounded-full"
+        />
+        <h1></h1>
+        {loadingDescription ? null : (
+          <div>{/* ... Elements for Dutch auction ... */}</div>
+        )}
       </div>
     );
   } else if (aiImagePreview) {
     return (
-      <div>
-        <img src={aiImageURL} alt="AI generated" />
-        <div>
+      <div className="">
+        <img
+          src={aiImageURL}
+          alt="AI generated"
+          className="flex items-center w-96 border-2"
+        />
+        <div className="flex justify-center my-8">
           <button
             onClick={() => {
               aiImageAccepted();
             }}
+            className="flex items-center mx-4 rounded-xl hover:bg-light_green"
           >
-            Add image to my images
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4.5 12.75l6 6 9-13.5"
+              />
+            </svg>
           </button>
-          <button onClick={() => setAiImagePreview(false)}>
-            I will upload my own image
+          <button
+            onClick={() => setAiImagePreview(false)}
+            className="flex items-center mx-4 rounded-xl hover:bg-light_green"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
           </button>
         </div>
       </div>
@@ -176,109 +218,121 @@ export default function CreateForwardAuction({ session }) {
   } else {
     return (
       <div>
-        <div>
-          <h1>{isPublished ? "Published" : "Unpublished"}</h1>
-          <label className="toggle">
-            <input
-              type="checkbox"
-              checked={isPublished}
-              onClick={() => setIsPublished(!isPublished)}
-            />
-            <div className="slider text-light_green" />
+        <div className="flex flex-col">
+          <div className="flex items-center">
+            <h1>{isPublished ? "Published" : "Unpublished"}</h1>
+            <label className="toggle">
+              <input
+                type="checkbox"
+                checked={isPublished}
+                onClick={() => setIsPublished(!isPublished)}
+              />
+              <div className="slider text-light_green" />
+            </label>
+          </div>
+          <label htmlFor="title" className="font-bold mb-2">
+            Title
           </label>
+          <div className="flex justify-between items-center">
+            <input
+              id="title"
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-3/4 h-10"
+            />
+            {title.length > 0 ? (
+              <button
+                onClick={() => generateAIDescription(title)}
+                className="flex items-center mx-4 w-full rounded-xl hover:bg-light_green"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
+                  />
+                </svg>
+                Suggest AI description
+              </button>
+            ) : null}
+          </div>
         </div>
         <div>
-          <label htmlFor="title">Title</label>
-          <input
-            id="title"
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          {title.length < 5 ? (
-            <button disabled>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
-                />
-              </svg>
-              Suggest a description
-            </button>
-          ) : (
-            <button onClick={() => generateAIDescription(title)}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
-                />
-              </svg>
-              Suggest a description
-            </button>
-          )}
-        </div>
-        <div>
-          <label htmlFor="title">Description</label>
-          <input
+          <label htmlFor="title" className="font-bold">
+            Description
+          </label>
+          <textarea
             id="description"
-            type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-          />
+            className="w-3/4 h-40 resize-none border border-light_black radius rounded-xl p-2 bg-background_black"
+            placeholder="Enter description here..."
+          ></textarea>
         </div>
-        <div>
-          <label htmlFor="title">Choose Images</label>
-          <input
-            id="images"
-            type="text"
-            placeholder="Insert links for images separated by commas ex: Link1, Link2, etc ..."
-            onChange={(e) => handleImages(e.target.value)}
-          />
-          {description.length < 100 ? (
-            <div></div>
-          ) : (
-            <button onClick={() => generateAIImage(description)}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
+        <div className="flex flex-col">
+          <label htmlFor="title" className="font-bold mb-2">
+            Choose Images
+          </label>
+          <div className="flex justify-between items-center">
+            <div className="relative group">
+              <div className="inline-block rounded p-2 hover:bg-gray-200">
+                ?
+              </div>
+              <div className="w-40 text-xs absolute z-10 -mt-10 bg-gray-700 text-white px-2 py-1 rounded-xl opacity-0 invisible transition-opacity duration-300 ease-in-out group-hover:opacity-100 group-hover:visible border bg-light_black">
+                Insert links to images seperated by commas
+              </div>
+            </div>
+            <input
+              id="images"
+              type="text"
+              value={images.toString()}
+              onChange={(e) => handleImages(e.target.value)}
+              className="w-40"
+            />
+            {description.length < 100 ? (
+              <div></div>
+            ) : (
+              <button
+                onClick={() => generateAIImage(description)}
+                className="flex items-center mx-4 w-96 rounded-xl hover:bg-light_green"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
-                />
-              </svg>
-              Generate an image from your desccription
-            </button>
-          )}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6 "
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
+                  />
+                </svg>
+                Generate image
+              </button>
+            )}
+          </div>
         </div>
-        <div>
-          <label htmlFor="price">Price</label>
+        <div className="my-4">
+          <label htmlFor="price" className="font-bold">
+            Price
+          </label>
           <input
             id="price"
             type="number"
             value={price}
             onChange={(e) => checkPrice(e.target.value)}
+            className="w-2/3"
           />
         </div>
         <div>
@@ -288,9 +342,10 @@ export default function CreateForwardAuction({ session }) {
             name="meeting-time"
             value="2023-11-12T12:00"
             onChange={(e) => handleTime(e.target.value)}
+            className="w-full"
           />
         </div>
-        {(priceError && <div>Enter a valid price</div>) || (
+        {(priceError && <div className="my-8">Enter a valid price</div>) || (
           <div>
             <button
               onClick={() =>
@@ -303,6 +358,7 @@ export default function CreateForwardAuction({ session }) {
                   endstime,
                 })
               }
+              className="flex items-center m-8 rounded-xl hover:bg-light_green"
             >
               Create Auction
             </button>
