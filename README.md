@@ -11,6 +11,10 @@ In a Dutch Auction, the user listing the item starts with a higher price. This i
  
 ### Project Overview 
 Our project focuses on creating a highly compatible front-end and back-end system. We aim to develop an efficient, secure, and fast auctioning system that users can rely on anytime and anywhere. To achieve this, we will be utilizing Next.js, a React framework known for its modular architecture. Next.js allows us to add extra features along the way without affecting the entire project. This means we can design each React component independently, almost equivalent to user cases. 
+
+> **_NOTE:_** We have a docekrized microservice that is deployed and this app uses it to enable the ai assistance features.
+That microservice was deleted in the latest push to github as it caused issues in deployed the app to vercel. It is a seperate container anyways and should not live in the same container anyways. If you want to check the code for that, please refer to earleir commits, or [test the docker image here](https://hub.docker.com/repository/docker/mustafaanaskh99/asassistant/general)
+
  
 ### Technologies Used 
 1) Supabase:
