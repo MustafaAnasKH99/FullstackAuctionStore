@@ -1,6 +1,7 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import MyAuctions from '@/app/myauctions/my-auctions'
+import SingleDutchAuction from './single-dutch-auction'
 
 export default async function DutchAuction({ params: { id } }) {
     const cookieStore = cookies()
@@ -17,8 +18,7 @@ export default async function DutchAuction({ params: { id } }) {
   } else {
       return (
           <div>
-              <h1>A Dutch Auction</h1>
-              <MyAuctions session={session} data={[dutch_auctions]} />
+              <SingleDutchAuction session={session} dutch_data={[dutch_auctions]} />
           </div>
       )
   }

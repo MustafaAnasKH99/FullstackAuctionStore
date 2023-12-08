@@ -1,6 +1,6 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
-import ForwardAuction from '@/app/myauctions/forward-auction'
+import SingleForwardAuction from './single-forward-auction'
 
 export default async function DutchAuction({ params: { id } }) {
     const cookieStore = cookies()
@@ -18,8 +18,7 @@ export default async function DutchAuction({ params: { id } }) {
     } else {
         return (
             <div>
-                <h1>A Forward Auction</h1>
-                <ForwardAuction session={session} data={[forward_auctions]} />
+                <SingleForwardAuction session={session} forward_data={[forward_auctions]} />
             </div>
         )
     }
