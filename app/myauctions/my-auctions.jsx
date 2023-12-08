@@ -8,7 +8,9 @@ export default function MyAuctions({ session, data, forward_auction }) {
   const [loading, setLoading] = useState(false);
   const [forward, setForward] = useState([]);
   const [dutch, setDutch] = useState([]);
-  const [currentImageIndices, setCurrentImageIndices] = useState(data.map(() => 0));
+  const [currentImageIndices, setCurrentImageIndices] = useState(
+    data.map(() => 0)
+  );
 
   const handleSearch = (filter) => {
     let filteredForwardAuctions = forward_auction.filter((auction) => {
@@ -64,22 +66,26 @@ export default function MyAuctions({ session, data, forward_auction }) {
         <div>
           {dutch.map((el, index) => {
             return (
-              <table key={index}>
-                <tbody>
-                  <tr>
-                    <div className="flex my-5 items-start">
-                      {/* Images */}
-                      <div className="relative w-40 h-40 mr-5">
-                        <img
-                          className="w-full h-full object-cover border-2 border-dark_green rounded-2xl"
-                          src={el.pictures[currentImageIndices[index]]}
-                          alt="Listing"
-                        />
+              <div key={index}>
+                <div className="flex my-5 mx-10 items-start">
+                  {/* Images */}
+                  <div className="relative w-40 h-40 mr-5">
+                    <div className="flex flex-col items-center flex-shrink-0">
+                      <img
+                        className="w-full h-full object-cover border-2 border-dark_green rounded-2xl"
+                        src={el.pictures[currentImageIndices[index]]}
+                        alt="Listing"
+                      />
+                      <div className="flex justify-between w-full mt-4">
                         <button
-                          className="absolute left-0 top-1/2 transform -translate-y-1/2 rounded-full hover:bg-light_green font-semibold"
+                          className="rounded-full hover:bg-light_green font-semibold"
                           onClick={() => {
-                            const newCurrentImageIndices = [...currentImageIndices];
-                            newCurrentImageIndices[index] = (newCurrentImageIndices[index] - 1) % el.pictures.length;
+                            const newCurrentImageIndices = [
+                              ...currentImageIndices,
+                            ];
+                            newCurrentImageIndices[index] =
+                              (newCurrentImageIndices[index] - 1) %
+                              el.pictures.length;
                             setCurrentImageIndices(newCurrentImageIndices);
                           }}
                         >
@@ -99,10 +105,14 @@ export default function MyAuctions({ session, data, forward_auction }) {
                           </svg>
                         </button>
                         <button
-                          className="absolute right-0 top-1/2 transform -translate-y-1/2 rounded-full hover:bg-light_green font-semibold"
+                          className="rounded-full hover:bg-light_green font-semibold"
                           onClick={() => {
-                            const newCurrentImageIndices = [...currentImageIndices];
-                            newCurrentImageIndices[index] = (newCurrentImageIndices[index] + 1) % el.pictures.length;
+                            const newCurrentImageIndices = [
+                              ...currentImageIndices,
+                            ];
+                            newCurrentImageIndices[index] =
+                              (newCurrentImageIndices[index] + 1) %
+                              el.pictures.length;
                             setCurrentImageIndices(newCurrentImageIndices);
                           }}
                         >
@@ -122,38 +132,76 @@ export default function MyAuctions({ session, data, forward_auction }) {
                           </svg>
                         </button>
                       </div>
+                    </div>
+                  </div>
 
-                      {/* Listing information */}
-                      <div className="w-1/2 pl-4">
-                        <div className="text-lg text-light_green font-semibold">{el.title}</div>
-                        <div className="flex text-sm font-medium">Description: <div className="font-extralight ml-2">{el.description}</div></div>
-                        <div className="flex text-sm font-medium">Posted: <div className="font-extralight ml-2">{el.published.toString()}</div></div>
-                        <div className="flex text-sm font-medium">Starting Price: <div className="font-extralight ml-2">{el.initial_price}</div></div>
-                        <div className="flex text-sm font-medium">Decrement amount: <div className="font-extralight ml-2">{el.decrement_amount}</div></div>
-                        <div className="flex text-sm font-medium"> Reserve Price: <div className="font-extralight ml-2">{el.reserve_price}</div></div>
-                        <div className="flex text-sm font-medium">Current Bid: <div className="font-extralight ml-2">{el.current_bid}</div></div>
-                        <div className="flex text-sm font-medium">Created at: <div className="font-extralight ml-2">{new Date(el.created_at).toLocaleDateString()}</div></div>
-                      </div>
-
-                      {/* Payment button */}
-                      <div className="relative ml-40">
-                      <Link 
-                        href={{
-                          pathname: "/payment",
-                          query: {
-                              "price": el.initial_price,
-                          }
-                        }}>
-
-                          <button className="rounded-full hover:bg-light_green font-semibold">
-                            Pay
-                          </button>
-                        </Link>
+                  {/* Listing information */}
+                  <div className="w-1/2 pl-4">
+                    <div className="text-lg text-light_green font-semibold">
+                      {el.title}
+                    </div>
+                    <div className="flex text-sm font-medium">
+                      Description:{" "}
+                      <div className="font-extralight ml-2">
+                        {el.description}
                       </div>
                     </div>
-                  </tr>
-                </tbody>
-              </table>
+                    <div className="flex text-sm font-medium">
+                      Posted:{" "}
+                      <div className="font-extralight ml-2">
+                        {el.published.toString()}
+                      </div>
+                    </div>
+                    <div className="flex text-sm font-medium">
+                      Starting Price:{" "}
+                      <div className="font-extralight ml-2">
+                        {el.initial_price}
+                      </div>
+                    </div>
+                    <div className="flex text-sm font-medium">
+                      Decrement amount:{" "}
+                      <div className="font-extralight ml-2">
+                        {el.decrement_amount}
+                      </div>
+                    </div>
+                    <div className="flex text-sm font-medium">
+                      {" "}
+                      Reserve Price:{" "}
+                      <div className="font-extralight ml-2">
+                        {el.reserve_price}
+                      </div>
+                    </div>
+                    <div className="flex text-sm font-medium">
+                      Current Bid:{" "}
+                      <div className="font-extralight ml-2">
+                        {el.current_bid}
+                      </div>
+                    </div>
+                    <div className="flex text-sm font-medium">
+                      Created at:{" "}
+                      <div className="font-extralight ml-2">
+                        {new Date(el.created_at).toLocaleDateString()}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Payment button */}
+                  <div className="relative ml-40">
+                    <Link
+                      href={{
+                        pathname: "/payment",
+                        query: {
+                          price: el.initial_price,
+                        },
+                      }}
+                    >
+                      <button className="absolute right-0 top-1/2 rounded-full hover:bg-light_green font-semibold">
+                        Pay
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
             );
           })}
         </div>
@@ -170,92 +218,138 @@ export default function MyAuctions({ session, data, forward_auction }) {
       <div>
         {data.map((el, index) => {
           return (
-            <table key={index}>
-              <tbody>
-                <div className="flex my-5 mx-10 items-start">
-                  {/* Images */}
-                  <div className="relative w-40 h-40 mr-5">
+            <div key={index}>
+              <div className="flex my-5 mx-10 items-start">
+                {/* Images */}
+                <div className="relative w-40 h-40 mr-5">
+                  <div className="flex flex-col items-center flex-shrink-0">
                     <img
                       className="w-full h-full object-cover border-2 border-dark_green rounded-2xl"
                       src={el.pictures[currentImageIndices[index]]}
                       alt="Listing"
                     />
-                    <button
-                      className="absolute left-0 top-1/2 transform -translate-y-1/2 rounded-full hover:bg-light_green font-semibold"
-                      onClick={() => {
-                        const newCurrentImageIndices = [...currentImageIndices];
-                        newCurrentImageIndices[index] = (newCurrentImageIndices[index] - 1) % el.pictures.length;
-                        setCurrentImageIndices(newCurrentImageIndices);
-                      }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-2 h-2"
+                    <div className="flex justify-between w-full mt-4">
+                      <button
+                        className="rounded-full hover:bg-light_green font-semibold"
+                        onClick={() => {
+                          const newCurrentImageIndices = [
+                            ...currentImageIndices,
+                          ];
+                          newCurrentImageIndices[index] =
+                            (newCurrentImageIndices[index] - 1) %
+                            el.pictures.length;
+                          setCurrentImageIndices(newCurrentImageIndices);
+                        }}
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M15.75 19.5L8.25 12l7.5-7.5"
-                        />
-                      </svg>
-                    </button>
-                    <button
-                      className="absolute right-0 top-1/2 transform -translate-y-1/2 rounded-full hover:bg-light_green font-semibold"
-                      onClick={() => {
-                        const newCurrentImageIndices = [...currentImageIndices];
-                        newCurrentImageIndices[index] = (newCurrentImageIndices[index] + 1) % el.pictures.length;
-                        setCurrentImageIndices(newCurrentImageIndices);
-                      }}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-2 h-2"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-
-                  {/* Listing information */}
-                  <div className="w-1/2 pl-4">
-                    <div className="text-lg text-light_green font-semibold">{el.title}</div>
-                    <div className="flex text-sm font-medium">Description: <div className="font-extralight ml-2">{el.description}</div></div>
-                    <div className="flex text-sm font-medium">Posted: <div className="font-extralight ml-2">{el.published.toString()}</div></div>
-                    <div className="flex text-sm font-medium">Starting Price: <div className="font-extralight ml-2">{el.initial_price}</div></div>
-                    <div className="flex text-sm font-medium">Decrement amount: <div className="font-extralight ml-2">{el.decrement_amount}</div></div>
-                    <div className="flex text-sm font-medium"> Reserve Price: <div className="font-extralight ml-2">{el.reserve_price}</div></div>
-                    <div className="flex text-sm font-medium">Current Bid: <div className="font-extralight ml-2">{el.current_bid}</div></div>
-                    <div className="flex text-sm font-medium">Created at: <div className="font-extralight ml-2">{new Date(el.created_at).toLocaleDateString()}</div></div>
-                  </div>
-
-                  {/* Payment button */}
-                  <div className="relative ml-40">
-                    <Link 
-                     href={{
-                      pathname: "/payment",
-                      query: {
-                          "price": el.initial_price,
-                      }
-                    }}>
-                      <button className="absolute right-0 top-1/2 rounded-full hover:bg-light_green font-semibold">
-                        Pay
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-2 h-2"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M15.75 19.5L8.25 12l7.5-7.5"
+                          />
+                        </svg>
                       </button>
-                    </Link>
+                      <button
+                        className="rounded-full hover:bg-light_green font-semibold"
+                        onClick={() => {
+                          const newCurrentImageIndices = [
+                            ...currentImageIndices,
+                          ];
+                          newCurrentImageIndices[index] =
+                            (newCurrentImageIndices[index] + 1) %
+                            el.pictures.length;
+                          setCurrentImageIndices(newCurrentImageIndices);
+                        }}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-2 h-2"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                          />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                 </div>
-                {/* <tr>
+
+                {/* Listing information */}
+                <div className="w-1/2 pl-4">
+                  <div className="text-lg text-light_green font-semibold">
+                    {el.title}
+                  </div>
+                  <div className="flex text-sm font-medium">
+                    Description:{" "}
+                    <div className="font-extralight ml-2">{el.description}</div>
+                  </div>
+                  <div className="flex text-sm font-medium">
+                    Posted:{" "}
+                    <div className="font-extralight ml-2">
+                      {el.published.toString()}
+                    </div>
+                  </div>
+                  <div className="flex text-sm font-medium">
+                    Starting Price:{" "}
+                    <div className="font-extralight ml-2">
+                      {el.initial_price}
+                    </div>
+                  </div>
+                  <div className="flex text-sm font-medium">
+                    Decrement amount:{" "}
+                    <div className="font-extralight ml-2">
+                      {el.decrement_amount}
+                    </div>
+                  </div>
+                  <div className="flex text-sm font-medium">
+                    {" "}
+                    Reserve Price:{" "}
+                    <div className="font-extralight ml-2">
+                      {el.reserve_price}
+                    </div>
+                  </div>
+                  <div className="flex text-sm font-medium">
+                    Current Bid:{" "}
+                    <div className="font-extralight ml-2">{el.current_bid}</div>
+                  </div>
+                  <div className="flex text-sm font-medium">
+                    Created at:{" "}
+                    <div className="font-extralight ml-2">
+                      {new Date(el.created_at).toLocaleDateString()}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Payment button */}
+                <div className="relative ml-40">
+                  <Link
+                    href={{
+                      pathname: "/payment",
+                      query: {
+                        price: el.initial_price,
+                      },
+                    }}
+                  >
+                    <button className="absolute right-0 top-1/2 rounded-full hover:bg-light_green font-semibold">
+                      Pay
+                    </button>
+                  </Link>
+                </div>
+              </div>
+              {/* <tr>
                   <td>Status:</td>
                   {el.accepted_bidder ? (
                     <td>Auction Already Accepted</td>
@@ -273,8 +367,7 @@ export default function MyAuctions({ session, data, forward_auction }) {
                     );
                   })}
                 </tr> */}
-              </tbody>
-            </table>
+            </div>
           );
         })}
       </div>
