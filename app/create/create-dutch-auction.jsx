@@ -1,12 +1,16 @@
 'use client'
 import { useEffect, useCallback, useState } from "react";
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { generateDescription } from "@/aiassistant_service/controllers/openai";
 
 export default function CreateDutchAuction({ session }) {
     const supabase = createClientComponentClient()
     const user = session?.user
 
     const [ title, setTitle ] = useState("")
+    const [ loadingDescription, setloadingAI ] = useState(false)
+    const [ aiImagePreview, setAiImagePreview ] = useState(false)
+    const [ aiImageURL, setAiImageURL ] = useState("")
     const [ description, setDescription ] = useState("")
     const [ images, setImages ] = useState([])
     const [isPublished, setIsPublished] = useState(false)
@@ -82,7 +86,62 @@ export default function CreateDutchAuction({ session }) {
  useEffect(() => {
 
     }, [])
+    const generateAIImage = async (description) => {
+        setloadingAI(true)
+        try{
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
 
+            var raw = JSON.stringify({
+            "prompt": description
+            });
+
+            var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+            };
+
+            fetch("https://asassistant-z4xrhjgh3q-uc.a.run.app/aiassistant/image/", requestOptions)
+            .then(response => response.json())
+            .then(result => {setloadingAI(false); setAiImageURL(result.image_obj.data[0].url); setAiImagePreview(true)})
+            .catch(error => console.log('error', error));
+
+        } catch (error) {
+            console.error('Error:', error);
+            alert(error)
+        }
+    }
+
+    const generateAIDescription = async (title) => {
+        try{
+            const requestOptions = {
+                mode: 'cors',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin':'*'
+                },
+                redirect: 'follow'
+            };
+            setloadingAI(true)
+            fetch(`https://asassistant-z4xrhjgh3q-uc.a.run.app/aiassistant/description/?title=${title}`, requestOptions)
+                .then(response => response.json())
+                .then(result => {setloadingAI(false); setDescription(result["description"]["content"])})
+                .catch(error => console.log('error', error));
+
+        } catch (error) {
+            console.error('Error:', error);
+            alert(error)
+        }
+    }
+
+    const aiImageAccepted = () => {
+        setAiImagePreview(false)
+        setImages([...images, aiImageURL])
+    }
+    
     const handleTime = (el) => {
         const event = new Date(el)
         const final_date = event.toISOString()
@@ -100,6 +159,22 @@ export default function CreateDutchAuction({ session }) {
                 <h1>Creating Auction ...</h1>
             </div>
         )
+    } else if (loadingDescription) { 
+        return (
+            <div>
+                <h1>Your assistant AI taking care of it ...</h1>
+            </div>
+        )
+    } else if (aiImagePreview) {
+        return (
+            <div>
+                <img src={aiImageURL} alt="AI generated" />
+                <div>
+                    <button onClick={() => {aiImageAccepted()}}>Add image to my images</button>
+                    <button onClick={() => setAiImagePreview(false)}>I will upload my own image</button>
+                </div>
+            </div>
+        );
     } else {
         return (
             <div>
@@ -114,6 +189,7 @@ export default function CreateDutchAuction({ session }) {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     />
+                    { title.length < 5 ? <button disabled>Suggest a description</button> : <button onClick={() => generateAIDescription(title)}>Suggest a description</button>}
                 </div>
                 <div>
                     <label htmlFor="title">Description</label>
@@ -126,10 +202,11 @@ export default function CreateDutchAuction({ session }) {
                 </div>
                 <div>
                     <label htmlFor="title">Choose Images</label>
+                    { description.length < 100 ? <div></div> : <button onClick={() => generateAIImage(description)}>Generate an image from your desccription</button>}
                     <input
                     id="images"
                     type="text"
-                    placeholder="Insert links for images separated by commas ex: Link1, Link2, etc ..."
+                    value={images.toString()}
                     onChange={(e) => handleImages(e.target.value)}
                     />
                 </div>

@@ -7,6 +7,9 @@ export default function CreateForwardAuction({ session }) {
     const user = session?.user
 
     const [ title, setTitle ] = useState("")
+    const [ loadingDescription, setloadingAI ] = useState(false)
+    const [ aiImagePreview, setAiImagePreview ] = useState(false)
+    const [ aiImageURL, setAiImageURL ] = useState("")
     const [ description, setDescription ] = useState("")
     const [ images, setImages ] = useState([])
     const [isPublished, setIsPublished] = useState(false)
@@ -57,6 +60,62 @@ export default function CreateForwardAuction({ session }) {
 
     }, [])
 
+    const generateAIImage = async (description) => {
+        setloadingAI(true)
+        try{
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var raw = JSON.stringify({
+            "prompt": description
+            });
+
+            var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+            };
+
+            fetch("https://asassistant-z4xrhjgh3q-uc.a.run.app/aiassistant/image/", requestOptions)
+            .then(response => response.json())
+            .then(result => {setloadingAI(false); setAiImageURL(result.image_obj.data[0].url); setAiImagePreview(true)})
+            .catch(error => console.log('error', error));
+
+        } catch (error) {
+            console.error('Error:', error);
+            alert(error)
+        }
+    }
+
+    const generateAIDescription = async (title) => {
+        try{
+            const requestOptions = {
+                mode: 'cors',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin':'*'
+                },
+                redirect: 'follow'
+            };
+            setloadingAI(true)
+            fetch(`https://asassistant-z4xrhjgh3q-uc.a.run.app/aiassistant/description/?title=${title}`, requestOptions)
+                .then(response => response.json())
+                .then(result => {setloadingAI(false); setDescription(result["description"]["content"])})
+                .catch(error => console.log('error', error));
+
+        } catch (error) {
+            console.error('Error:', error);
+            alert(error)
+        }
+    }
+
+    const aiImageAccepted = () => {
+        setAiImagePreview(false)
+        setImages([...images, aiImageURL])
+    }
+
     const handleTime = (el) => {
         const event = new Date(el)
         const final_date = event.toISOString()
@@ -74,6 +133,22 @@ export default function CreateForwardAuction({ session }) {
                 <h1>Creating Auction ...</h1>
             </div>
         )
+    } else if (loadingDescription) { 
+        return (
+            <div>
+                <h1>Your assistant AI taking care of it ...</h1>
+            </div>
+        )
+    } else if (aiImagePreview) {
+        return (
+            <div>
+                <img src={aiImageURL} alt="AI generated" />
+                <div>
+                    <button onClick={() => {aiImageAccepted()}}>Add image to my images</button>
+                    <button onClick={() => setAiImagePreview(false)}>I will upload my own image</button>
+                </div>
+            </div>
+        );
     } else {
         return (
             <div>
