@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import ForwardBidInput from './forward-bid-input'
@@ -22,6 +23,7 @@ export default function ForwardAuction({ session, data }) {
             <div>
             {data.map((el, index) => {
                 return (
+                    <Link href={`/home/forward/${el.id}`} >
                     <table key={index}>
                         <tbody>
                             <tr>
@@ -68,6 +70,7 @@ export default function ForwardAuction({ session, data }) {
                             </tr>
                         </tbody>
                     </table>
+                    </Link>
                 )
             })}    
             </div>

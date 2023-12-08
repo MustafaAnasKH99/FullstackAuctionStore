@@ -136,6 +136,7 @@ export default function MyAuctions({ session, data, forward_auction }) {
                   </div>
 
                   {/* Listing information */}
+                  <Link href={`/home/dutch/${el.id}`} >
                   <div className="w-1/2 pl-4">
                     <div className="text-lg text-light_green font-semibold">
                       {el.title}
@@ -184,7 +185,7 @@ export default function MyAuctions({ session, data, forward_auction }) {
                       </div>
                     </div>
                   </div>
-
+                  </Link>
                   {/* Payment button */}
                   <div className="relative ml-40">
                     <Link
@@ -207,7 +208,7 @@ export default function MyAuctions({ session, data, forward_auction }) {
         </div>
         <h1>FORWARD AUCTIONS</h1>
         <div>
-          <ForwardAuction session={session} data={forward} />
+            <ForwardAuction session={session} data={forward} />
         </div>
         {/* This table renders user data - traform into a seperate header component */}
       </div>
@@ -288,6 +289,7 @@ export default function MyAuctions({ session, data, forward_auction }) {
                 </div>
 
                 {/* Listing information */}
+                <Link href={`/home/dutch/${el.id}`} >
                 <div className="w-1/2 pl-4">
                   <div className="text-lg text-light_green font-semibold">
                     {el.title}
@@ -332,6 +334,7 @@ export default function MyAuctions({ session, data, forward_auction }) {
                     </div>
                   </div>
                 </div>
+                </Link>
 
                 {/* Payment button */}
                 <div className="relative ml-40">
