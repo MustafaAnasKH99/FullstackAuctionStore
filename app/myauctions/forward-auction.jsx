@@ -23,7 +23,7 @@ export default function ForwardAuction({ session, data }) {
             <div>
             {data.map((el, index) => {
                 return (
-                    <Link href={`/home/forward/${el.id}`} >
+                    <Link key={index} href={`/home/forward/${el.id}`} >
                     <table key={index}>
                         <tbody>
                             <tr>
