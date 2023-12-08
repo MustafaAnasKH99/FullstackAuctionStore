@@ -1,7 +1,6 @@
 'use client'
 import { useEffect, useCallback, useState } from "react";
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { generateDescription } from "@/aiassistant_service/controllers/openai";
 
 export default function CreateDutchAuction({ session }) {
     const supabase = createClientComponentClient()
