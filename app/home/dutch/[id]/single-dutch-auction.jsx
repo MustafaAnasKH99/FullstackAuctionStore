@@ -121,20 +121,23 @@ export default function SingleDutchAuction({ session, dutch_data }) {
           </div>
         {/* </Link> */}
         {/* Payment button */}
-        <div className="relative ml-40">
-          <Link
-            href={{
-              pathname: "/payment",
-              query: {
-                price: data.initial_price,
-              },
-            }}
-          >
-            <button className="absolute right-0 top-1/2 rounded-full hover:bg-light_green font-semibold">
-              Pay
-            </button>
-          </Link>
-        </div>
+        {/* Remove pay button if logged user is owner */}
+        { data.created_by === session.user.id ? (
+          <div></div>
+        ) : (<div className="relative ml-40">
+        <Link
+          href={{
+            pathname: "/payment",
+            query: {
+              price: data.initial_price,
+            },
+          }}
+        >
+          <button className="absolute right-0 top-1/2 rounded-full hover:bg-light_green font-semibold">
+            Pay
+          </button>
+        </Link>
+      </div>) }
       </div>
     );
   } else {

@@ -12,9 +12,10 @@ export default async function DutchAuction({ params: { id } }) {
     } = await supabase.auth.getSession()
 
     // return dutch auction if id exists and is published (public)
-    const {data: dutch_auctions} = await supabase.from('dutch_auction').select("*").eq('id', id).eq('published', true).single();
+    const {data: dutch_auctions} = await supabase.from('dutch_auction').select("*").eq('id', id).eq('published', true).is("accepted_bidder", null).single();
+
     if(dutch_auctions === null){
-      return <h1>This auction either does not exist or is private</h1>
+      return <h1>This auction either no longer exists or is private</h1>
   } else {
       return (
           <div>

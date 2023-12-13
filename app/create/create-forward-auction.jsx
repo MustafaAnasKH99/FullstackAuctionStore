@@ -340,7 +340,7 @@ export default function CreateForwardAuction({ session }) {
             type="datetime-local"
             id="meeting-time"
             name="meeting-time"
-            value="2023-11-12T12:00"
+            // value="2023-11-12T12:00"
             onChange={(e) => handleTime(e.target.value)}
             className="w-full"
           />
