@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
+import ForwardBidInput from "@/app/myauctions/forward-bid-input";
 
 export default function SingleForwardAuction({ session, forward_data }) {
   const [loading, setLoading] = useState(false);
@@ -123,18 +124,7 @@ export default function SingleForwardAuction({ session, forward_data }) {
         {/* </Link> */}
         {/* Payment button */}
         <div className="relative ml-40">
-          <Link
-            href={{
-              pathname: "/payment",
-              query: {
-                price: data.initial_price,
-              },
-            }}
-          >
-            <button className="absolute right-0 top-1/2 rounded-full hover:bg-light_green font-semibold">
-              Pay
-            </button>
-          </Link>
+          <ForwardBidInput session={session} id={data.id} />
         </div>
       </div>
     )
